@@ -1,4 +1,5 @@
 const PLACES_SEARCH_URL = "https://maps.googleapis.com/maps/api/geocode/json";
+const BOOK_ENTRY_URL = "https://tastedive.com/api/similar?"
 
 function getDataFromApi(searchTerm, callback) {
   const query = {
@@ -39,8 +40,8 @@ var map;
 var infowindow;
 
 function initMap(num1, num2) {
-  var lat1 = parseFloat(num1);
-  var lng1 = parseFloat(num2);
+  let lat1 = parseFloat(num1);
+  let lng1 = parseFloat(num2);
   var pyrmont = {lat: lat1, lng: lng1};
 
   map = new google.maps.Map(document.getElementById('map'), {
@@ -83,7 +84,6 @@ function initMap(num1, num2) {
               + '<br>');
           }
         })
-        console.log(place);
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
           map: map,
@@ -97,3 +97,43 @@ function initMap(num1, num2) {
       }
 
 ///////////////////////////////////////////////////////////////////////////////////
+
+function getDataFromTasteDiveApi(searchTerm, callback) {
+  const settings = {
+    url: BOOK_ENTRY_URL,
+    data: {
+      q: `${searchTerm}`,
+    type: "books",
+    info: 1,
+    limit: 20,
+    k: "310938-Coffeean-LGCO6BCH",
+    },
+    jsonp: "callback",
+    dataType: 'jsonp',
+    type: 'GET',
+    success: function(data) {
+      console.log(data);
+    } ,
+  };
+
+  $.ajax(settings);
+}
+
+function renderTasteResult(result) {
+  console.log(results);
+}
+
+function displayBookRecommendation(data) {
+  const results = data.results.map((item, index) => renderTasteResult(item));
+}
+
+function watchTasteSubmit() {
+  $('.places-search').submit(event => {
+    event.preventDefault();
+    const queryTasteTarget = $(event.currentTarget).find('.favorite');
+    const queryTaste = queryTasteTarget.val();
+    console.log(queryTaste);
+    queryTasteTarget.val("");
+    getDataFromTasteDiveApi(queryTaste, displayBookRecommendation2);
+  })
+}
