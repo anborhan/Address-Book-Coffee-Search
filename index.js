@@ -1,5 +1,6 @@
 const PLACES_SEARCH_URL = "https://maps.googleapis.com/maps/api/geocode/json";
 const BOOK_ENTRY_URL = "https://tastedive.com/api/similar?"
+let DISTANCE = 1000;
 
 function getDataFromApi(searchTerm, callback) {
   const query = {
@@ -23,6 +24,9 @@ function displayBookstoreData(data) {
 function watchSubmit() {
   $(`.places-search`).submit(event => {
     event.preventDefault();
+    $('.bookstores').html("");
+    $('.coffeeShops').html("");    
+    DISTANCE = $("#myList").val();
     const query1 = $(".address-query").val();
     const query2 = $(".city-query").val();
     const queryCombined = `${query1} ${query2}`
@@ -31,6 +35,8 @@ function watchSubmit() {
     $(".tasteEntry").removeClass("hidden");
     $(".bookstoresTitle").removeClass("hidden");
     $(".coffeeShopsTitle").removeClass("hidden");
+    $(".bookstoreResults").removeClass("hidden");
+    $(".coffeeStoreResults").removeClass("hidden");
   });
 }
 
@@ -54,13 +60,13 @@ function initMap(num1, num2) {
         var service = new google.maps.places.PlacesService(map);
         service.nearbySearch({
           location: pyrmont,
-          radius: 500,
+          radius: DISTANCE,
           type: ['store'],
           keyword: ['coffee']
         }, callbackMap);
         service.nearbySearch({
           location: pyrmont,
-          radius: 500,
+          radius: DISTANCE,
           type: ['store'],
           keyword: ['used bookstore']
         }, callbackMap);
@@ -77,6 +83,8 @@ function initMap(num1, num2) {
       function createMarker(place) {
         const places = [place];
         places.forEach(function(item){
+//          if (place.name.includes('Starbucks') || place.name.includes('Dunkin\' Donuts')){
+//          } else 
           if (place.types.includes('book_store')) {
             $(".bookstores").append(`${place.name}, ${place.vicinity}, ${place.rating}`
             + '<br>')
