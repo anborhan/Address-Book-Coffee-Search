@@ -6,12 +6,10 @@ function getDataFromApi(searchTerm, callback) {
     key: "AIzaSyClAGAlVzkT-vNFM8rXYuEe3Iu-SHFS9eE",
     address: `${searchTerm}`,
   }
-
   $.getJSON(PLACES_SEARCH_URL, query, callback);
 }
 
 function renderResult(result) {
-
   const coordinates1 = `${result.geometry.location.lat}`
   const coordinates2 = `${result.geometry.location.lng}`
   initMap(coordinates1, coordinates2);
@@ -29,7 +27,10 @@ function watchSubmit() {
     const query2 = $(".city-query").val();
     const queryCombined = `${query1} ${query2}`
     getDataFromApi(queryCombined, displayBookstoreData);
-    $("#map").show('slow');
+    $("#map").removeClass("hidden");
+    $(".tasteEntry").removeClass("hidden");
+    $(".bookstoresTitle").removeClass("hidden");
+    $(".coffeeShopsTitle").removeClass("hidden");
   });
 }
 
@@ -53,19 +54,19 @@ function initMap(num1, num2) {
         var service = new google.maps.places.PlacesService(map);
         service.nearbySearch({
           location: pyrmont,
-          radius: 1000,
+          radius: 500,
           type: ['store'],
           keyword: ['coffee']
-        }, callback);
+        }, callbackMap);
         service.nearbySearch({
           location: pyrmont,
-          radius: 1000,
+          radius: 500,
           type: ['store'],
           keyword: ['used bookstore']
-        }, callback);
+        }, callbackMap);
       }
 
-      function callback(results, status) {
+      function callbackMap(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
@@ -74,13 +75,13 @@ function initMap(num1, num2) {
       }
 
       function createMarker(place) {
-        const places = [place]
+        const places = [place];
         places.forEach(function(item){
           if (place.types.includes('book_store')) {
-            $(".places-search-results").append(`${place.name}, ${place.vicinity}, ${place.rating}`
+            $(".bookstores").append(`${place.name}, ${place.vicinity}, ${place.rating}`
             + '<br>')
           } else {
-            $(".places-search-results2").append(`${place.name}, ${place.vicinity}, ${place.rating}`
+            $(".coffeeShops").append(`${place.name}, ${place.vicinity}, ${place.rating}`
               + '<br>');
           }
         })
@@ -112,7 +113,7 @@ function getDataFromTasteDiveApi(searchTerm, callback) {
     dataType: 'jsonp',
     type: 'GET',
     success: function(data) {
-      console.log(data);
+      renderTasteResult(data);
     } ,
   };
 
@@ -120,20 +121,55 @@ function getDataFromTasteDiveApi(searchTerm, callback) {
 }
 
 function renderTasteResult(result) {
-  console.log(results);
+  if (result.Similar.Results[0] == null) {
+    console.log("oops!");
+  }
+  $('.book-results').html("");
+  $(".book-results").append(`<h3>${result.Similar.Results[0].Name}</h3>`);
+  $(".book-results").append(`${result.Similar.Results[0].wTeaser}` + '<br>');
+  $(".book-results").append("<a class=\"bookLink\" href=\"" + `${result.Similar.Results[0].wUrl}` + "\" target=\"_blank\">Click here to learn more!</a>");
+  tryAnotherBook(result);
+}
+
+function tryAnotherBook(result) {
+  console.log(result)
+  let counter = 0;
+  let suggestionLength = result.Similar.Results.length - 2;
+  $(".bookSuggest").on("click", function(){
+    if (counter <= suggestionLength) {
+    counter++;
+    $('.book-results').html("");
+    $(".book-results").append(`<h3>${result.Similar.Results[counter].Name}</h3>`);
+    $(".book-results").append(`${result.Similar.Results[counter].wTeaser}` + '<br>');
+    $(".book-results").append("<a class=\"bookLink\" href=\"" + `${result.Similar.Results[counter].wUrl}` + "\" target=\"_blank\">Click here to learn more!</a>");
+    } else {
+      counter = -1;
+      counter++;
+      $('.book-results').html("");
+    $(".book-results").append(`<h3>${result.Similar.Results[counter].Name}</h3>`);
+      $(".book-results").append(`${result.Similar.Results[counter].wTeaser}` + '<br>');
+      $(".book-results").append("<a class=\"bookLink\" href=\"" + `${result.Similar.Results[counter].wUrl}` + "\" target=\"_blank\">Click here to learn more!</a>");
+    }
+  });
 }
 
 function displayBookRecommendation(data) {
   const results = data.results.map((item, index) => renderTasteResult(item));
+  $(`.book-results`).html(results);
 }
 
 function watchTasteSubmit() {
-  $('.places-search').submit(event => {
+  $('.tasteEntry').submit(event => {
+    $(".suggestionBox").removeClass("hidden");
     event.preventDefault();
     const queryTasteTarget = $(event.currentTarget).find('.favorite');
     const queryTaste = queryTasteTarget.val();
-    console.log(queryTaste);
     queryTasteTarget.val("");
-    getDataFromTasteDiveApi(queryTaste, displayBookRecommendation2);
+    getDataFromTasteDiveApi(queryTaste, displayBookRecommendation);
   })
 }
+
+$(function(){
+  watchSubmit();
+  watchTasteSubmit();
+})

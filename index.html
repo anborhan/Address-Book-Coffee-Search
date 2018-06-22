@@ -9,28 +9,46 @@
   <body>
     <section role="region" class="search bar">
       <h1>Google Maps Search</h1>
-      <form action="#" class="places-search" onsubmit="watchSubmit()">
+      <form action="#" class="places-search">
         <fieldset>
           <legend class="legend">Search for Coffee and Bookstores Near You</legend>
           <label for="places-query">Address</label>
           <input type="text" class="address-query" required>
           <label for="places-query">City</label>
           <input type="text" class="city-query" required>
-          <label for="favorite">Favorite Book</label>          
-          <input aria-label="search" type="text" class="favorite" required>
           <button type="submit">Search</button>
         </fieldset>
-      </form>    
+      </form>
+        <form action="#" class="tasteEntry hidden">
+          <fieldset>
+            <legend class="legend">Enter a Book or Author you Enjoy!</legend>
+            <input aria-label="search" type="text" class="favorite" required>
+            <label for="favorite"></label>
+           <button type="submit">Recommend Something New to Me!</button>
+          </fieldset>
+        </form>
     </section>  
         <section role="region" class="results">
-      <h2>Bookstores</h2>
-      <div class="places-search-results">  
+      <div class="bookstoresTitle hidden">
+        <h2>Bookstores</h2>
+        <div class="bookstores">  
+        </div>
       </div>
-      <h2>Coffee Shops</h2>
-      <div class="places-search-results2">  
+      <div class="coffeeShopsTitle hidden">
+        <h2>Coffee Shops</h2>
+        <div class="coffeeShops">  
+        </div>
+      </div>
+      <div class="suggestionBox hidden">
+        <h2>A Book for You!</h2>
+          <div class="book-results">
+            <div class = "bold">
+            </div>
+          </div>
+          <button class="bookSuggest" type="submit">I want another one!</button>
       </div>
     </section>
-    <div id="map"></div>
+    <div id="map" class="hidden"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAo1LDASiD0RRLu_bi_byILuWw7aC5bDKM&libraries=places&callback=initMap" async defer></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="index.js"></script>

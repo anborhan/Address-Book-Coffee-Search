@@ -1,15 +1,27 @@
 #map {
-        display: none;
-        height: 50%;
-        width: 50%;
-        border: 3px solid black;
-        margin-left: auto;
-        margin-right: auto;
-        top: 30px;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
+  height: 50%;
+  width: 50%;
+  border: 3px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  top: 30px;
+  }
+
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  }
+
+.hidden {
+  display: none;
+}
+
+.suggestionBox {
+  border: 3px solid black;
+}
+
+.bookLink {
+  font-weight: bold;
+}
