@@ -94,6 +94,7 @@ function initMap(num1, num2, meters) {
       }
 
       function callbackMap(results, status) {
+        console.log(results)
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
@@ -114,14 +115,17 @@ function initMap(num1, num2, meters) {
         const places = [place];
         places.forEach(function(item){
 //          if (place.name.includes('Starbucks') || place.name.includes('Dunkin\' Donuts')){
-//          } else 
+//          } else
+        if (place.rating >= 4) {
           if (place.types.includes('book_store')) {
+            console.log(place.rating)
             $(".bookstores").append(`${place.name}, ${place.vicinity}, ${place.rating}`
             + '<br>')
           } else {
             $(".coffeeShops").append(`${place.name}, ${place.vicinity}, ${place.rating}`
               + '<br>');
           }
+        }
         })
         var placeLoc = place.geometry.location;
         if (place.types.includes('book_store')) {
