@@ -32,11 +32,11 @@ html, body {
 .bookstoreResults {
   float: left;
   width: 30%;
-  height: 50%;
+  min-height: 50%;
 }
 
 .coffeeStoreResults {
   float: left;
   width: 30%;
-  height: 50%;
+  min-height: 50%;
 }

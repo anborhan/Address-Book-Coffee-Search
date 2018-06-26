@@ -94,7 +94,6 @@ function initMap(num1, num2, meters) {
       }
 
       function callbackMap(results, status) {
-        console.log(results)
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
@@ -118,7 +117,6 @@ function initMap(num1, num2, meters) {
 //          } else
         if (place.rating >= 4) {
           if (place.types.includes('book_store')) {
-            console.log(place.rating)
             $(".bookstores").append(`${place.name}, ${place.vicinity}, ${place.rating}`
             + '<br>')
           } else {
@@ -223,3 +221,5 @@ $(function(){
   watchAddressSubmit();
   watchTasteSubmit();
 })
+
+///////////////////////////
