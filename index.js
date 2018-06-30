@@ -27,6 +27,13 @@ function renderGeocodeResult(result, meters) {
 function watchAddressSubmit() {
   $(`.places-search`).submit(event => {
     event.preventDefault();
+    $(".suggestionBox").removeClass("hidden");
+    const queryTasteTarget = $(event.currentTarget).find('.favorite');
+    const queryTaste = queryTasteTarget.val();
+    console.log(queryTaste)
+    queryTasteTarget.val("");
+    getDataFromTasteDiveApi(queryTaste, displayBookRecommendation);
+    revealMap();
     $('.bookstores').html("");
     $('.coffeeShops').html("");    
     const meters = $("#meter").val();
@@ -44,12 +51,7 @@ function passToMaps() {
 }
 
 function pageAppear() {
-    $("#map").removeClass("hidden");
-    $(".tasteEntry").removeClass("hidden");
-    $(".bookstoresTitle").removeClass("hidden");
-    $(".coffeeShopsTitle").removeClass("hidden");
-    $(".bookstoreResults").removeClass("hidden");
-    $(".coffeeStoreResults").removeClass("hidden");
+  $(".tasteEntry").removeClass("hidden");
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -104,11 +106,11 @@ function initMap(num1, num2, meters) {
       function createMarker(place) {
 
         const coffeeMug = {
-          icon: 'https://i.imgur.com/0hAu6U0.png'
+          icon: 'https://i.imgur.com/IDt1OoX.png'
         }
 
         const bookstoreIcon = {
-          icon: 'https://i.imgur.com/5UX7fVw.png'
+          icon: 'https://i.imgur.com/fhQX3sf.png'
         }
 
         const places = [place];
@@ -162,6 +164,7 @@ function getDataFromTasteDiveApi(searchTerm, callback) {
     dataType: 'jsonp',
     type: 'GET',
     success: function(data) {
+      console.log(data)
       renderTasteResult(data);
     } ,
   };
@@ -206,7 +209,7 @@ function displayBookRecommendation(data) {
   $(`.book-results`).html(results);
 }
 
-function watchTasteSubmit() {
+/*function watchTasteSubmit() {
   $('.tasteEntry').submit(event => {
     $(".suggestionBox").removeClass("hidden");
     event.preventDefault();
@@ -214,12 +217,23 @@ function watchTasteSubmit() {
     const queryTaste = queryTasteTarget.val();
     queryTasteTarget.val("");
     getDataFromTasteDiveApi(queryTaste, displayBookRecommendation);
+    revealMap();
   })
+}*/
+
+function revealMap() {
+  $('#inputPage').animate({
+    top: "-1920px"}, "slow"
+  );
+  $("#map").removeClass("hidden");
+  $(".bookstoresTitle").removeClass("hidden");
+  $(".coffeeShopsTitle").removeClass("hidden");
+  $(".bookstoreResults").removeClass("hidden");
+  $(".coffeeStoreResults").removeClass("hidden");
 }
 
 $(function(){
   watchAddressSubmit();
-  watchTasteSubmit();
 })
 
 ///////////////////////////
