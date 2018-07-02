@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Place searches</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -17,18 +17,18 @@
       <form action="#" class="places-search">
         <fieldset class="formField">
           <legend class="legend">Search for Coffee and Bookstores Near You</legend>
-          <label for="address-query">ADDRESS</label>
-          <input type="text" class="address-query" required>
-          <label for="City-query">CITY</label>
-          <input type="text" class="city-query" required>
-          <label for = "meter">DISTANCE</label>
+          <label for="address-query">Address</label>
+          <input type="text" class="address-query" placeholder="123 Place Street" required>
+          <label for="City-query">City</label>
+          <input type="text" class="city-query" placeholder="Atlantis" required>
+          <label for = "meter">Distance</label>
           <select id = "meter">
             <option value = "1000">1000 meters</option>
             <option value = "5000">5000 meters</option>
             <option value = "10000">10,000 meters</option>
           </select>
-            <label for="favorite">YOUR FAVORITE BOOK OR AUTHOR</label>
-            <input aria-label="search" type="text" class="favorite" required>
+            <label for="favorite">Your Favorite Book or Author</label>
+            <input aria-label="search" type="text" class="favorite" placeholder="Moby Dick" required>
         </fieldset>
         <button class="submit" type="submit">FIND YOUR HAPPY PLACE</button>
       </form>

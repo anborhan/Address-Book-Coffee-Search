@@ -3,6 +3,19 @@
     color: #302220;
 }
 
+/*#meter {
+
+  &:invalid {
+    color: gray;
+  }
+  [disabled] {
+    color: gray;
+  }
+  option {
+    color: $default-color;
+  }
+}*/
+
 .header {
   font-family: 'Fjalla One', sans-serif;
   display: inline-block;
@@ -11,7 +24,7 @@
   width: 100%;
   top: 10px;
   font-weight: normal;
-  color: #565656;
+  color: #302220;
   font-size: 37px;
   padding-bottom: 10px;
 }
@@ -106,6 +119,7 @@ label {
   margin-left: auto;
   margin-right: auto;
   top: 20%;
+  border: #302220 solid 4px;
 }
 /* Optional: Makes the sample page fill the window. */
 html, body {

@@ -25,17 +25,17 @@ function renderGeocodeResult(result, meters) {
 }
 
 function watchAddressSubmit() {
-  $(`.places-search`).submit(event => {
+  $(".places-search").submit(event => {
     event.preventDefault();
     $(".suggestionBox").removeClass("hidden");
-    const queryTasteTarget = $(event.currentTarget).find('.favorite');
+    const queryTasteTarget = $(event.currentTarget).find(".favorite");
     const queryTaste = queryTasteTarget.val();
     console.log(queryTaste)
     queryTasteTarget.val("");
     getDataFromTasteDiveApi(queryTaste, displayBookRecommendation);
     revealMap();
-    $('.bookstores').html("");
-    $('.coffeeShops').html("");    
+    $(".bookstores").html("");
+    $(".coffeeShops").html("");    
     const meters = $("#meter").val();
     const query1 = $(".address-query").val();
     const query2 = $(".city-query").val();
@@ -65,16 +65,17 @@ function initMap(num1, num2, meters) {
   var pyrmont = {lat: lat1, lng: lng1};
   
   const zoom = function(meters) {
-      if (meters == 1000) {
+  let metersNum = parseInt(meters);
+      if (metersNum === 1000) {
       return 14;
-    } else if (meters == 5000) {
+    } else if (metersNum === 5000) {
       return 12;
-    } else if (meters == 10000) {
+    } else {
       return 11;
     }
   }
 
-  map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById("map"), {
     center: pyrmont,
     zoom: zoom(meters)
   });
@@ -128,6 +129,9 @@ function initMap(num1, num2, meters) {
         }
         })
         var placeLoc = place.geometry.location;
+        if (place.rating >= 4) {
+
+
         if (place.types.includes('book_store')) {
         var marker = new google.maps.Marker({
           map: map,
@@ -147,6 +151,7 @@ function initMap(num1, num2, meters) {
           infowindow.open(map, this);
         });
       }
+    }
 
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -232,8 +237,13 @@ function revealMap() {
   $(".coffeeStoreResults").removeClass("hidden");
 }
 
+function resetForms() {
+  $(".places-search")[0].reset();
+}
+
 $(function(){
   watchAddressSubmit();
+  resetForms();
 })
 
 ///////////////////////////
