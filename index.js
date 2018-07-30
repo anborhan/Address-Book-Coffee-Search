@@ -227,13 +227,14 @@ function displayBookRecommendation(data) {
 }*/
 
 function revealMap() {
-  $('#inputPage').animate({
-    top: "-1920px"}, "slow"
+  $('body').animate({
+    'background-position-y': "-1920px"}, "slow"
   );
+  $(".backdrop").slideUp();
   $("#map").removeClass("hidden");
-  $(".bookstoresTitle").removeClass("hidden");
-  $(".coffeeShopsTitle").removeClass("hidden");
-  $(".bookstoreResults").removeClass("hidden");
+  $(".sectionOne").removeClass("hidden");
+  $(".centered").removeClass("hidden");
+  $(".bookSuggest").removeClass("hidden");
   $(".coffeeStoreResults").removeClass("hidden");
 }
 

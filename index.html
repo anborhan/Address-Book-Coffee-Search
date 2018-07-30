@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <link href="index.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="./float-grid.css" />
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Average" rel="stylesheet">
   </head>
@@ -30,36 +31,36 @@
             <label for="favorite">Your Favorite Book or Author</label>
             <input aria-label="search" type="text" class="favorite" placeholder="Moby Dick" required>
         </fieldset>
-        <button class="submit" type="submit">FIND YOUR HAPPY PLACE</button>
+        <div class="relativeButton">
+          <button class="submit" type="submit">FIND YOUR HAPPY PLACE</button>
+        </div>
       </form>
       </section>
     </div>
     </div>
-      <section role="region" class="bookstoreResults hidden">
-      <div class="bookstoresTitle hidden">
-        <h2>Bookstores</h2>
-        <div class="bookstores">  
-        </div>
+    <div class="row sectionOne hidden" id="mapRow">
+      <div class="col-4"><h2 class="sectionTitle">Bookstores</h2>
+        <div class="box bookstores">4 columns</div>
       </div>
-      </section>
-      <div id="map" class="hidden"></div>
-      <section role="region" class="coffeeStoreResults hidden">
-        <div class="coffeeShopsTitle hidden">
-        <h2>Coffee Shops</h2>
-        <div class="coffeeShops">  
-        </div>
-        </div>
-      </section>
-      <section role="region" class="bookResults">
-      <div class="suggestionBox hidden">
-        <h2>A Book for You!</h2>
-          <div class="book-results">
+      <div class="col-4"><h2 class="sectionTitle">Map</h2>
+        <div id="map" class="box hidden">4 columns</div>
+      </div>
+      <div class="col-4"><h2 class="sectionTitle">Coffee Shops</h2>
+        <div class="box coffeeShops">4 columns</div>
+      </div>
+    </div>
+    <div class="row centered hidden">
+      <div class="col-12"><h2 class="sectionTitle">Book Suggestion</h2>
+        <div class="boxTwo">
+          <div class="book-results">A Book for You!
             <div class = "bold">
-            </div>
+            </div>     
           </div>
-          <button class="bookSuggest" type="submit">I want another one!</button>
+            <button class="bookSuggest" type="submit">I want another one!</button>
+          </div>   
       </div>
-      </section>
+    </div>
+    <div
     </main>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="index.js"></script>
