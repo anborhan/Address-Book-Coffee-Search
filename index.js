@@ -30,7 +30,6 @@ function watchAddressSubmit() {
     $(".suggestionBox").removeClass("hidden");
     const queryTasteTarget = $(event.currentTarget).find(".favorite");
     const queryTaste = queryTasteTarget.val();
-    console.log(queryTaste)
     queryTasteTarget.val("");
     getDataFromTasteDiveApi(queryTaste, displayBookRecommendation);
     revealMap();
@@ -116,14 +115,12 @@ function initMap(num1, num2, meters) {
 
         const places = [place];
         places.forEach(function(item){
-//          if (place.name.includes('Starbucks') || place.name.includes('Dunkin\' Donuts')){
-//          } else
         if (place.rating >= 4) {
           if (place.types.includes('book_store')) {
-            $(".bookstores").append(`${place.name}, ${place.vicinity}, ${place.rating}`
+            $(".bookstores").append(`<a href="https://maps.google.com/?q=${place.name}" target="_blank">${place.name}</a>, ${place.vicinity}, ${place.rating}`
             + '<br>')
           } else {
-            $(".coffeeShops").append(`${place.name}, ${place.vicinity}, ${place.rating}`
+            $(".coffeeShops").append(`<a href="https://maps.google.com/?q=${place.name}" target="_blank">${place.name}</a>, ${place.vicinity}, ${place.rating}`
               + '<br>');
           }
         }
@@ -169,7 +166,6 @@ function getDataFromTasteDiveApi(searchTerm, callback) {
     dataType: 'jsonp',
     type: 'GET',
     success: function(data) {
-      console.log(data)
       renderTasteResult(data);
     } ,
   };
@@ -183,7 +179,7 @@ function renderTasteResult(result) {
   }
   $('.book-results').html("");
   $(".book-results").append(`<h3>${result.Similar.Results[0].Name}</h3>`);
-  $(".book-results").append(`${result.Similar.Results[0].wTeaser}` + '<br>');
+  $(".book-results").append(`<p class="suggestion">${result.Similar.Results[0].wTeaser}</p>` + '<br>');
   $(".book-results").append("<a class=\"bookLink\" href=\"" + `${result.Similar.Results[0].wUrl}` + "\" target=\"_blank\">Click here to learn more!</a>");
   tryAnotherBook(result);
 }
@@ -196,15 +192,15 @@ function tryAnotherBook(result) {
     counter++;
     $('.book-results').html("");
     $(".book-results").append(`<h3>${result.Similar.Results[counter].Name}</h3>`);
-    $(".book-results").append(`${result.Similar.Results[counter].wTeaser}` + '<br>');
+    $(".book-results").append(`<p class="suggestion">${result.Similar.Results[counter].wTeaser}</p>` + '<br>');
     $(".book-results").append("<a class=\"bookLink\" href=\"" + `${result.Similar.Results[counter].wUrl}` + "\" target=\"_blank\">Click here to learn more!</a>");
     } else {
       counter = -1;
       counter++;
       $('.book-results').html("");
     $(".book-results").append(`<h3>${result.Similar.Results[counter].Name}</h3>`);
-      $(".book-results").append(`${result.Similar.Results[counter].wTeaser}` + '<br>');
-      $(".book-results").append("<a class=\"bookLink\" href=\"" + `${result.Similar.Results[counter].wUrl}` + "\" target=\"_blank\">Click here to learn more!</a>");
+      $(".book-results").append(`<p class="suggestion">${result.Similar.Results[counter].wTeaser}</p>` + '<br>');
+    $(".book-results").append("<a class=\"bookLink\" href=\"" + `${result.Similar.Results[counter].wUrl}` + "\" target=\"_blank\">Click here to learn more!</a>");
     }
   });
 }
@@ -230,12 +226,29 @@ function revealMap() {
   $('body').animate({
     'background-position-y': "-1920px"}, "slow"
   );
-  $(".backdrop").slideUp();
+  $(".selectionMenu").slideUp();
   $("#map").removeClass("hidden");
   $(".sectionOne").removeClass("hidden");
   $(".centered").removeClass("hidden");
   $(".bookSuggest").removeClass("hidden");
   $(".coffeeStoreResults").removeClass("hidden");
+  $(".resetPage").removeClass("hidden");
+}
+
+function resetSearch() {
+  $(".resetButton").on("click", function(){
+    $('body').animate({
+      'background-position-y': "0"}, "slow"
+    );
+    $(".selectionMenu").slideDown();
+    $("#map").addClass("hidden");
+    $(".sectionOne").addClass("hidden");
+    $(".centered").addClass("hidden");
+    $(".bookSuggest").addClass("hidden");
+    $(".coffeeStoreResults").addClass("hidden");
+    $(".resetPage").addClass("hidden");
+    $(".places-search")[0].reset();
+  });
 }
 
 function resetForms() {
@@ -245,6 +258,7 @@ function resetForms() {
 $(function(){
   watchAddressSubmit();
   resetForms();
+  resetSearch();
 })
 
 ///////////////////////////

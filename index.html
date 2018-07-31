@@ -6,24 +6,25 @@
     <meta charset="utf-8">
     <link href="index.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="./float-grid.css" />
+    <link rel="stylesheet" href="./visuals.css" />
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Average" rel="stylesheet">
   </head>
   <body>
     <main>
     <div id="inputPage">
-      <div class="backdrop">
+      <div class="selectionMenu blueBackground center curvedBorder relative">
       <section role="region" class="search-bar">
-      <h1 class="header">Address. Book. Coffee.</h1>
-      <form action="#" class="places-search">
-        <fieldset class="formField">
-          <legend class="legend">Search for Coffee and Bookstores Near You</legend>
-          <label for="address-query">Address</label>
-          <input type="text" class="address-query" placeholder="123 Place Street" required>
-          <label for="City-query">City</label>
-          <input type="text" class="city-query" placeholder="Atlantis" required>
+      <h1 class="header brownText centerText fontFjallaOne inlineBlock relative">Address. Book. Coffee.</h1>
+      <form action="#" class="places-search blueBackground fontAverage relative">
+        <fieldset class="centerText fontAverage noBorder">
+          <legend class="center fontFjallaOne hidden relative">Search for Coffee and Bookstores Near You</legend>
+          <label for="address">Address</label>
+          <input type="text" id="address" class="address-query" placeholder="123 Place Street" required>
+          <label for="city">City</label>
+          <input type="text" id="city" class="city-query" placeholder="Atlantis" required>
           <label for = "meter">Distance</label>
-          <select id = "meter">
+          <select id = "meter" class="fontAverage relative whiteBackground">
             <option value = "1000">1000 meters</option>
             <option value = "5000">5000 meters</option>
             <option value = "10000">10,000 meters</option>
@@ -31,36 +32,36 @@
             <label for="favorite">Your Favorite Book or Author</label>
             <input aria-label="search" type="text" class="favorite" placeholder="Moby Dick" required>
         </fieldset>
-        <div class="relativeButton">
-          <button class="submit" type="submit">FIND YOUR HAPPY PLACE</button>
+        <div class="relative">
+          <button class="absolute block brownBackground center fontFjallaOne submit textShadow whiteText" type="submit">Find Your Happy Place</button>
         </div>
       </form>
       </section>
     </div>
     </div>
     <div class="row sectionOne hidden" id="mapRow">
-      <div class="col-4"><h2 class="sectionTitle">Bookstores</h2>
-        <div class="box bookstores">4 columns</div>
+      <div class="col-4"><h2 class="sectionTitle brownText centerText fontFjallaOne whiteBackground">Bookstores</h2>
+        <div class="bookstores box brownBorder brownText curvedBorder fontFjallaOne whiteBackground"></div>
       </div>
-      <div class="col-4"><h2 class="sectionTitle">Map</h2>
-        <div id="map" class="box hidden">4 columns</div>
+      <div class="col-4"><h2 class="sectionTitle brownText centerText fontFjallaOne whiteBackground">Map</h2>
+        <div id="map" class="box brownBorder curvedBorder hidden whiteBackground"><h2>Something went wrong! Please make a new search.</h2></div>
       </div>
-      <div class="col-4"><h2 class="sectionTitle">Coffee Shops</h2>
-        <div class="box coffeeShops">4 columns</div>
+      <div class="col-4"><h2 class="sectionTitle brownText centerText fontFjallaOne whiteBackground">Coffee Shops</h2>
+        <div class="coffeeShops box brownBorder brownText curvedBorder fontFjallaOne whiteBackground"></div>
       </div>
     </div>
     <div class="row centered hidden">
-      <div class="col-12"><h2 class="sectionTitle">Book Suggestion</h2>
-        <div class="boxTwo">
-          <div class="book-results">A Book for You!
-            <div class = "bold">
-            </div>     
-          </div>
-            <button class="bookSuggest" type="submit">I want another one!</button>
+      <div class="col-12"><h2 class="sectionTitle brownText centerText fontFjallaOne whiteBackground">Book Suggestion</h2>
+        <div class="boxTwo brownBorder center centerText curvedBorder fontFjallaOne whiteBackground">
+          <div class="book-results brownText whiteBackground">
+            </div>
+            <button class="bookSuggest block brownBackground center fontFjallaOne relative textShadow whiteText" type="submit">I want another book!</button>  
           </div>   
       </div>
     </div>
-    <div
+    <div class="resetPage hidden">
+    <button class="resetButton block brownBackground center fontFjallaOne relative textShadow whiteText" type="submit">Start a New Search</button> 
+  </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="index.js"></script>

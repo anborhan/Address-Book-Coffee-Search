@@ -1,0 +1,99 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+  background-image: url("https://i.imgur.com/EMOsRPf.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.fontFjallaOne {
+	font-family: 'Fjalla One', sans-serif;
+}
+
+.fontAverage {
+	font-family: 'Average', serif;
+}
+
+.brownFont {
+	color: #302220;
+}
+
+.relative {
+	position: relative;
+}
+
+.absolute {
+  	position: absolute;
+}
+
+.blackText {
+	color: black;
+}
+
+.whiteText {
+	color: #FCFCFC;
+}
+
+.brownText {
+	color: #302220;
+}
+
+.brownBackground {
+	background-color: #302220;
+}
+
+.blueBackground {
+	background-color: #6cc8d4;
+}
+
+.whiteBackground {
+	background-color: #FCFCFC
+}
+
+.centerText {
+ 	text-align: center;
+}
+
+.center {
+  	margin-left: auto;
+  	margin-right: auto;	
+}
+
+.hidden {
+	display: none;
+}
+
+.inlineBlock {
+	display: inline-block;	
+}
+
+.block {
+	display: block;
+}
+
+.floatLeft {
+	float: left;
+}
+
+.noBorder {
+	border: none;	
+}
+
+.textShadow {
+ 	text-shadow:
+   	-1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000; 	
+}
+
+.curvedBorder {
+  	border-radius: 10px;
+}
+
+.brownBorder {
+	border: #302220 solid 3px;
+}
