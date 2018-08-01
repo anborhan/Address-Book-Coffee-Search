@@ -17,10 +17,6 @@ body {
 	font-family: 'Average', serif;
 }
 
-.brownFont {
-	color: #302220;
-}
-
 .relative {
 	position: relative;
 }
@@ -50,7 +46,7 @@ body {
 }
 
 .whiteBackground {
-	background-color: #FCFCFC
+	background-color: #FCFCFC;
 }
 
 .centerText {

@@ -52,6 +52,11 @@ function passToMaps() {
 function pageAppear() {
   $(".tasteEntry").removeClass("hidden");
 }
+///////////////////////////////////////////////////////////////////////
+
+const ICON_COFFEE_MUG = 'https://i.imgur.com/IDt1OoX.png';
+
+const ICON_BOOKSTORE = 'https://i.imgur.com/fhQX3sf.png';
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -83,72 +88,79 @@ function initMap(num1, num2, meters) {
         var service = new google.maps.places.PlacesService(map);
         service.nearbySearch({
           location: pyrmont,
-          radius: meters,
+          radius: meters || 1000,
           type: ['store'],
           keyword: ['coffee']
-        }, callbackMap);
+        }, renderCoffeeShops);
         service.nearbySearch({
           location: pyrmont,
-          radius: meters,
+          radius: meters || 1000,
           type: ['store'],
           keyword: ['used bookstore']
-        }, callbackMap);
+        }, renderBookstores);
       }
 
-      function callbackMap(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
-          }
-        }
-      }
+function createBookstoreMarker(place, icon) {
+  var marker = new google.maps.Marker({
+    map: map,
+    position: place.geometry.location,
+    icon: icon
+  });
+  
+  google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent(place.name);
+      infowindow.open(map, this);
+  });
+}
 
-      function createMarker(place) {
+function createCoffeeMarker(place, icon) {
+  var marker = new google.maps.Marker({
+    map: map,
+    position: place.geometry.location,
+    icon: icon
+  }); 
 
-        const coffeeMug = {
-          icon: 'https://i.imgur.com/IDt1OoX.png'
-        }
-
-        const bookstoreIcon = {
-          icon: 'https://i.imgur.com/fhQX3sf.png'
-        }
-
-        const places = [place];
-        places.forEach(function(item){
-        if (place.rating >= 4) {
-          if (place.types.includes('book_store')) {
-            $(".bookstores").append(`<a href="https://maps.google.com/?q=${place.name}" target="_blank">${place.name}</a>, ${place.vicinity}, ${place.rating}`
-            + '<br>')
-          } else {
-            $(".coffeeShops").append(`<a href="https://maps.google.com/?q=${place.name}" target="_blank">${place.name}</a>, ${place.vicinity}, ${place.rating}`
-              + '<br>');
-          }
-        }
-        })
-        var placeLoc = place.geometry.location;
-        if (place.rating >= 4) {
+  google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent(place.name);
+      infowindow.open(map, this);
+  });
+}
 
 
-        if (place.types.includes('book_store')) {
-        var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location,
-          icon: bookstoreIcon.icon
-        });
-        } else {
-          var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location,
-          icon: coffeeMug.icon
-        });  
-        }
-
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
-        });
+function renderBookstores(results, status) {
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
+    for (let i = 0; i < results.length; i++) {
+      let place = results[i];
+      if (place.rating >= 4 && place.types.includes('book_store')) {
+        createBookstoreMarker(place, ICON_BOOKSTORE);
+        listBookstore(place);
       }
     }
+  }
+}
+
+function renderCoffeeShops(results, status) {
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      let place = results[i];
+      if (place.rating >= 4 && place.types.includes('cafe')) {
+        createCoffeeMarker(results[i], ICON_COFFEE_MUG);
+        listCoffeeShop(place);
+      }
+    }
+  }
+}
+
+function listBookstore(place) {
+  $(".bookstores").append(`<a href="https://maps.google.com/?q=${place.name}" target="_blank">${place.name}</a>, ${place.vicinity}, ${place.rating}`
+  + '<br>')
+}
+
+function listCoffeeShop(place) {
+  $(".coffeeShops").append(`<a href="https://maps.google.com/?q=${place.name}" target="_blank">${place.name}</a>, ${place.vicinity}, ${place.rating}`
+  + '<br>');
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////
 
