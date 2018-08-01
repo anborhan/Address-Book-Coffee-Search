@@ -30,7 +30,6 @@ function watchAddressSubmit() {
     $(".suggestionBox").removeClass("hidden");
     const queryTasteTarget = $(event.currentTarget).find(".favorite");
     const queryTaste = queryTasteTarget.val();
-    console.log(queryTaste)
     queryTasteTarget.val("");
     getDataFromTasteDiveApi(queryTaste, displayBookRecommendation);
     revealMap();
@@ -53,6 +52,11 @@ function passToMaps() {
 function pageAppear() {
   $(".tasteEntry").removeClass("hidden");
 }
+///////////////////////////////////////////////////////////////////////
+
+const ICON_COFFEE_MUG = 'https://i.imgur.com/IDt1OoX.png';
+
+const ICON_BOOKSTORE = 'https://i.imgur.com/fhQX3sf.png';
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -84,74 +88,79 @@ function initMap(num1, num2, meters) {
         var service = new google.maps.places.PlacesService(map);
         service.nearbySearch({
           location: pyrmont,
-          radius: meters,
+          radius: meters || 1000,
           type: ['store'],
           keyword: ['coffee']
-        }, callbackMap);
+        }, renderCoffeeShops);
         service.nearbySearch({
           location: pyrmont,
-          radius: meters,
+          radius: meters || 1000,
           type: ['store'],
           keyword: ['used bookstore']
-        }, callbackMap);
+        }, renderBookstores);
       }
 
-      function callbackMap(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
-          }
-        }
-      }
+function createBookstoreMarker(place, icon) {
+  var marker = new google.maps.Marker({
+    map: map,
+    position: place.geometry.location,
+    icon: icon
+  });
+  
+  google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent(place.name);
+      infowindow.open(map, this);
+  });
+}
 
-      function createMarker(place) {
+function createCoffeeMarker(place, icon) {
+  var marker = new google.maps.Marker({
+    map: map,
+    position: place.geometry.location,
+    icon: icon
+  }); 
 
-        const coffeeMug = {
-          icon: 'https://i.imgur.com/IDt1OoX.png'
-        }
-
-        const bookstoreIcon = {
-          icon: 'https://i.imgur.com/fhQX3sf.png'
-        }
-
-        const places = [place];
-        places.forEach(function(item){
-//          if (place.name.includes('Starbucks') || place.name.includes('Dunkin\' Donuts')){
-//          } else
-        if (place.rating >= 4) {
-          if (place.types.includes('book_store')) {
-            $(".bookstores").append(`${place.name}, ${place.vicinity}, ${place.rating}`
-            + '<br>')
-          } else {
-            $(".coffeeShops").append(`${place.name}, ${place.vicinity}, ${place.rating}`
-              + '<br>');
-          }
-        }
-        })
-        var placeLoc = place.geometry.location;
-        if (place.rating >= 4) {
+  google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent(place.name);
+      infowindow.open(map, this);
+  });
+}
 
 
-        if (place.types.includes('book_store')) {
-        var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location,
-          icon: bookstoreIcon.icon
-        });
-        } else {
-          var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location,
-          icon: coffeeMug.icon
-        });  
-        }
-
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
-        });
+function renderBookstores(results, status) {
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
+    for (let i = 0; i < results.length; i++) {
+      let place = results[i];
+      if (place.rating >= 4 && place.types.includes('book_store')) {
+        createBookstoreMarker(place, ICON_BOOKSTORE);
+        listBookstore(place);
       }
     }
+  }
+}
+
+function renderCoffeeShops(results, status) {
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      let place = results[i];
+      if (place.rating >= 4 && place.types.includes('cafe')) {
+        createCoffeeMarker(results[i], ICON_COFFEE_MUG);
+        listCoffeeShop(place);
+      }
+    }
+  }
+}
+
+function listBookstore(place) {
+  $(".bookstores").append(`<a href="https://maps.google.com/?q=${place.name}" target="_blank">${place.name}</a>, ${place.vicinity}, ${place.rating}`
+  + '<br>')
+}
+
+function listCoffeeShop(place) {
+  $(".coffeeShops").append(`<a href="https://maps.google.com/?q=${place.name}" target="_blank">${place.name}</a>, ${place.vicinity}, ${place.rating}`
+  + '<br>');
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -169,7 +178,6 @@ function getDataFromTasteDiveApi(searchTerm, callback) {
     dataType: 'jsonp',
     type: 'GET',
     success: function(data) {
-      console.log(data)
       renderTasteResult(data);
     } ,
   };
@@ -183,7 +191,7 @@ function renderTasteResult(result) {
   }
   $('.book-results').html("");
   $(".book-results").append(`<h3>${result.Similar.Results[0].Name}</h3>`);
-  $(".book-results").append(`${result.Similar.Results[0].wTeaser}` + '<br>');
+  $(".book-results").append(`<p class="suggestion">${result.Similar.Results[0].wTeaser}</p>` + '<br>');
   $(".book-results").append("<a class=\"bookLink\" href=\"" + `${result.Similar.Results[0].wUrl}` + "\" target=\"_blank\">Click here to learn more!</a>");
   tryAnotherBook(result);
 }
@@ -196,15 +204,15 @@ function tryAnotherBook(result) {
     counter++;
     $('.book-results').html("");
     $(".book-results").append(`<h3>${result.Similar.Results[counter].Name}</h3>`);
-    $(".book-results").append(`${result.Similar.Results[counter].wTeaser}` + '<br>');
+    $(".book-results").append(`<p class="suggestion">${result.Similar.Results[counter].wTeaser}</p>` + '<br>');
     $(".book-results").append("<a class=\"bookLink\" href=\"" + `${result.Similar.Results[counter].wUrl}` + "\" target=\"_blank\">Click here to learn more!</a>");
     } else {
       counter = -1;
       counter++;
       $('.book-results').html("");
     $(".book-results").append(`<h3>${result.Similar.Results[counter].Name}</h3>`);
-      $(".book-results").append(`${result.Similar.Results[counter].wTeaser}` + '<br>');
-      $(".book-results").append("<a class=\"bookLink\" href=\"" + `${result.Similar.Results[counter].wUrl}` + "\" target=\"_blank\">Click here to learn more!</a>");
+      $(".book-results").append(`<p class="suggestion">${result.Similar.Results[counter].wTeaser}</p>` + '<br>');
+    $(".book-results").append("<a class=\"bookLink\" href=\"" + `${result.Similar.Results[counter].wUrl}` + "\" target=\"_blank\">Click here to learn more!</a>");
     }
   });
 }
@@ -230,12 +238,29 @@ function revealMap() {
   $('body').animate({
     'background-position-y': "-1920px"}, "slow"
   );
-  $(".backdrop").slideUp();
+  $(".selectionMenu").slideUp();
   $("#map").removeClass("hidden");
   $(".sectionOne").removeClass("hidden");
   $(".centered").removeClass("hidden");
   $(".bookSuggest").removeClass("hidden");
   $(".coffeeStoreResults").removeClass("hidden");
+  $(".resetPage").removeClass("hidden");
+}
+
+function resetSearch() {
+  $(".resetButton").on("click", function(){
+    $('body').animate({
+      'background-position-y': "0"}, "slow"
+    );
+    $(".selectionMenu").slideDown();
+    $("#map").addClass("hidden");
+    $(".sectionOne").addClass("hidden");
+    $(".centered").addClass("hidden");
+    $(".bookSuggest").addClass("hidden");
+    $(".coffeeStoreResults").addClass("hidden");
+    $(".resetPage").addClass("hidden");
+    $(".places-search")[0].reset();
+  });
 }
 
 function resetForms() {
@@ -245,6 +270,7 @@ function resetForms() {
 $(function(){
   watchAddressSubmit();
   resetForms();
+  resetSearch();
 })
 
 ///////////////////////////
