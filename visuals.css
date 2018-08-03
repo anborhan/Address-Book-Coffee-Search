@@ -1,13 +1,4 @@
-* {
-    box-sizing: border-box;
-}
-
-body {
-  background-image: url("https://i.imgur.com/EMOsRPf.jpg");
-  background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
+/*CSS Rules*/
 
 .fontFjallaOne {
 	font-family: 'Fjalla One', sans-serif;
@@ -17,40 +8,44 @@ body {
 	font-family: 'Average', serif;
 }
 
-.relative {
-	position: relative;
-}
-
-.absolute {
-  	position: absolute;
-}
-
-.blackText {
+.textBlack {
 	color: black;
 }
 
-.whiteText {
+.textWhite {
 	color: #FCFCFC;
 }
 
-.brownText {
+.textBrown {
 	color: #302220;
 }
 
-.brownBackground {
-	background-color: #302220;
+.textShadow {
+  text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;   
 }
 
-.blueBackground {
-	background-color: #6cc8d4;
-}
-
-.whiteBackground {
+.backgroundWhite {
 	background-color: #FCFCFC;
 }
 
-.centerText {
- 	text-align: center;
+.backgroundBrown {
+  background-color: #302220;
+}
+
+.backgroundBlue {
+  background-color: #6cc8d4;
+}
+
+.borderBrown {
+  border: #302220 solid 3px;
+}
+
+.borderCurved {
+    border-radius: 10px;
 }
 
 .center {
@@ -62,34 +57,22 @@ body {
 	display: none;
 }
 
-.inlineBlock {
-	display: inline-block;	
-}
-
-.block {
-	display: block;
-}
-
-.floatLeft {
-	float: left;
-}
-
 .noBorder {
 	border: none;	
 }
 
-.textShadow {
- 	text-shadow:
-   	-1px -1px 0 #000,  
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000; 	
+/*CSS Interaction Rules*/
+
+.submit:hover, .submit:focus, .bookSuggest:focus {
+  background-color: #6cc8d4;
 }
 
-.curvedBorder {
-  	border-radius: 10px;
-}
-
-.brownBorder {
-	border: #302220 solid 3px;
+.bookSuggest:hover, .bookSuggest:focus, .resetButton:hover, .resetButton:focus {
+  background-color: #FCFCFC;
+  color: #302220;
+  text-shadow:
+    0px 0px 0 #000,  
+    0px 0px 0 #000,
+    0px 0px 0 #000,
+    0px 0px 0 #000; 
 }

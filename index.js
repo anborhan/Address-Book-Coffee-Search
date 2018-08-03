@@ -187,13 +187,16 @@ function getDataFromTasteDiveApi(searchTerm, callback) {
 
 function renderTasteResult(result) {
   if (result.Similar.Results[0] == null) {
-    console.log("oops!");
-  }
+    $(".bookSuggest").addClass("hidden");
+    $('.book-results').html("");
+    $(".book-results").append("Your entry wasn\'t found! Please make a new search and try again.");
+  } else {
   $('.book-results').html("");
   $(".book-results").append(`<h3>${result.Similar.Results[0].Name}</h3>`);
   $(".book-results").append(`<p class="suggestion">${result.Similar.Results[0].wTeaser}</p>` + '<br>');
   $(".book-results").append("<a class=\"bookLink\" href=\"" + `${result.Similar.Results[0].wUrl}` + "\" target=\"_blank\">Click here to learn more!</a>");
   tryAnotherBook(result);
+  }
 }
 
 function tryAnotherBook(result) {
@@ -221,18 +224,6 @@ function displayBookRecommendation(data) {
   const results = data.results.map((item, index) => renderTasteResult(item));
   $(`.book-results`).html(results);
 }
-
-/*function watchTasteSubmit() {
-  $('.tasteEntry').submit(event => {
-    $(".suggestionBox").removeClass("hidden");
-    event.preventDefault();
-    const queryTasteTarget = $(event.currentTarget).find('.favorite');
-    const queryTaste = queryTasteTarget.val();
-    queryTasteTarget.val("");
-    getDataFromTasteDiveApi(queryTaste, displayBookRecommendation);
-    revealMap();
-  })
-}*/
 
 function revealMap() {
   $('body').animate({

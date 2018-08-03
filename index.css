@@ -1,3 +1,4 @@
+/*Entire Page*/
 * {
     box-sizing: border-box;
 }
@@ -10,41 +11,64 @@ body {
   background-color: #6cc8d4;
 }
 
-.submit:hover, .submit:focus, .bookSuggest:focus {
-  background-color: #6cc8d4;
-}
+/*Front Page with Entry Form*/
 
-.bookSuggest:hover, .bookSuggest:focus, .resetButton:hover, .resetButton:focus {
-  background-color: #FCFCFC;
-  color: #302220;
-  text-shadow:
-    0px 0px 0 #000,  
-    0px 0px 0 #000,
-    0px 0px 0 #000,
-    0px 0px 0 #000; 
-}
-
-label {
-  font-family: 'Fjalla One', sans-serif;
-  display: block;
+.header {
   position: relative;
-  font-size: 19px;
+  display: inline-block;
   text-align: center;
-  margin-bottom: 2px;
-  margin-top: 2px;
 }
 
 .selectionMenu {
   max-width: 400px;
   margin-top: 5em;
   border: black solid 4px;
+  position: relative;
 }
 
-.sectionTitle {
+.entryForm {
+  border: none;
+  text-align: center;
+}
+
+legend {
+  position: relative  
+}
+
+select {
+  position: relative;
+}
+
+.buttonBegin {
+  position: absolute;
+  display: block;
+}
+
+/*Results Page*/
+.menuBanner {
+  color: #302220;
+  text-align: center;
+  font-family: 'Fjalla One', sans-serif;
+  background-color: #FCFCFC;
   border: #302220 solid 4px;
 }
 
-.coffeeShops, .bookstores, .boxTwo {
-  padding-left: 10px;
-  font-size: 19px;
+.menuResults {
+  border: #302220 solid 3px;
+  color: #302220;
+  border-radius: 10px;
+  font-family: 'Fjalla One', sans-serif;
+  background-color: #FCFCFC;
+}
+
+.book-results {
+  text-align: center;
+}
+
+.buttonNew {
+  display: block;
+  position: relative;
+  font-family: 'Fjalla One', sans-serif;
+  color: #FCFCFC;
+  background-color: #302220;
 }

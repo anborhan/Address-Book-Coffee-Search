@@ -14,89 +14,8 @@
   width: 100%;
   left: 0px;
   height: 300px;
-  }
-
-.coffeeShops, .bookstores, .suggestion {
-  font-size: 15px;
 }
 
-.bookSuggest {
-  min-width: 200px;
-  width: 70%;
-  height: 90px;
-  border-radius: 4px;
-  border: black solid 4px;
-  font-size: 30px;
-  font-weight: bold;
-  margin-top: 20px;
-  cursor: pointer;
-  padding-right: 10px;
-}
-
-.header {
-  width: 100%;
-  top: 10px;
-  font-weight: normal;
-  font-size: 37px;
-  padding-bottom: 10px;
-}
-
-.submit {
-  width: 100%;
-  padding: 0.5em;
-  border-radius: 4px;
-  border: black solid 4px;
-  font-size: 30px;
-  font-weight: bold;
-  margin-top: 20px;
-  cursor: pointer;
-}
-
-.bookSuggest {
-  min-width: 200px;
-  width: 15%;
-  height: 90px;
-  border-radius: 4px;
-  border: black solid 4px;
-  font-size: 30px;
-  font-weight: bold;
-  margin-top: 20px;
-  cursor: pointer;
-  padding-right: 10px;
-}
-
-.places-search input, #meter{
-  margin-bottom: 25px;
-  border: solid 2px #E7E7E7;
-  border-radius: 4px;
-  font-size: 19px;
-  width: 95%;
-  height: 30px;
-}
-
-.resetButton {
-  width: 80%;
-  height: 90px;
-  border-radius: 4px;
-  border: black solid 4px;
-  font-size: 30px;
-  font-weight: bold;
-  margin-top: 20px;
-  cursor: pointer;
-  padding-right: 10px;
-}
-
-.row {
-  padding-left: 20px;
-  padding-right: 20px;
-  margin: 0 auto;
-}
-
-#mapRow {
-  padding-left: 20px;
-  padding-right: 20px;
-  margin: 0 auto; 
-}
 /* Clearfix */
 .row::before,
 .row::after {
@@ -126,6 +45,114 @@ main .row {
   margin-bottom: 20px;
 }
 
+/*Front Page with Entry Form*/
+.selectionMenu {
+  max-width: 400px;
+  margin-top: 5em;
+  border: black solid 4px;
+  position: relative;
+}
+
+.header {
+  width: 100%;
+  top: 10px;
+  font-weight: normal;
+  font-size: 37px;
+  padding-bottom: 10px;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+.places-search {
+  position: relative;
+}
+
+.places-search input, #meter{
+  margin-bottom: 25px;
+  border: solid 2px #E7E7E7;
+  border-radius: 4px;
+  font-size: 19px;
+  width: 95%;
+  height: 30px;
+}
+
+label {
+  font-family: 'Fjalla One', sans-serif;
+  display: block;
+  position: relative;
+  font-size: 19px;
+  text-align: center;
+  margin-bottom: 2px;
+  margin-top: 2px;
+}
+
+.submit {
+  width: 100%;
+  padding: 0.5em;
+  border-radius: 4px;
+  border: black solid 4px;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+/*Results Page*/
+.coffeeShops, .bookstores, .suggestion {
+  font-size: 15px;
+}
+
+.bookSuggest {
+  min-width: 200px;
+  width: 70%;
+  height: 90px;
+  border-radius: 4px;
+  border: black solid 4px;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+  padding-right: 10px;
+}
+
+.bookSuggest {
+  min-width: 200px;
+  width: 15%;
+  height: 90px;
+  border-radius: 4px;
+  border: black solid 4px;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+  padding-right: 10px;
+}
+
+.resetButton {
+  width: 80%;
+  height: 90px;
+  border-radius: 4px;
+  border: black solid 4px;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+  padding-right: 10px;
+}
+
+.row {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
+}
+
+#mapRow {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto; 
+}
+
 .box {
   min-height: 300px;
   height: 60%;
@@ -143,14 +170,15 @@ main .row {
 
 @media only screen and (min-width: 640px) {
 
-.coffeeShops, .bookstores, .suggestion {
-  font-size: 17px;
-}
+  .coffeeShops, .bookstores, .suggestion {
+    font-size: 17px;
+  }
 
 }
 
 /* Non-mobile, grid */
 @media only screen and (min-width: 1000px) {
+
   /* 3 columns, 3/12 in % */
   .col-3 {
     width: 25%;
@@ -173,7 +201,6 @@ main .row {
 
   .centered {
     padding-top: 50px;
-
   }
 
   .box {
@@ -197,8 +224,12 @@ main .row {
   width: 40%;
   }
 
-  .coffeeShops, .bookstores, .suggestion {
+  .coffeeShops, .bookstores, .suggestion, .boxTwo {
   font-size: 19px;
   }
+
+  .coffeeShops, .bookstores, .boxTwo {
+  padding-left: 10px;
+}
 
 }

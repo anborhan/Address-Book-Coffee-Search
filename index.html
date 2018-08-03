@@ -13,18 +13,18 @@
   <body>
     <main>
     <div id="inputPage">
-      <div class="selectionMenu blueBackground center curvedBorder relative">
+      <div class="selectionMenu backgroundBlue center borderCurved">
       <section role="region" class="search-bar">
-      <h1 class="header brownText centerText fontFjallaOne inlineBlock relative">Address. Book. Coffee.</h1>
-      <form action="#" class="places-search blueBackground fontAverage relative">
-        <fieldset class="centerText fontAverage noBorder">
-          <legend class="center fontFjallaOne hidden relative">Search for Coffee and Bookstores Near You</legend>
+      <h1 class="header textBrown fontFjallaOne">Address. Book. Coffee.</h1>
+      <form action="#" class="places-search backgroundBlue borderCurved fontAverage">
+        <fieldset class="entryForm fontAverage">
+          <legend class="center fontFjallaOne hidden">Search for Coffee and Bookstores Near You</legend>
           <label for="address">Address</label>
           <input type="text" id="address" class="address-query" placeholder="123 Place Street" required>
           <label for="city">City</label>
           <input type="text" id="city" class="city-query" placeholder="Atlantis" required>
           <label for = "meter">Distance</label>
-          <select id = "meter" class="fontAverage relative whiteBackground">
+          <select id = "meter" class="fontAverage backgroundWhite">
             <option value = "1000">1000 meters</option>
             <option value = "5000">5000 meters</option>
             <option value = "10000">10,000 meters</option>
@@ -33,34 +33,34 @@
             <input aria-label="search" type="text" id="favoriteBook" class="favorite" placeholder="Moby Dick" required>
         </fieldset>
         <div class="relative">
-          <button class="absolute block brownBackground center fontFjallaOne submit textShadow whiteText" type="submit">Find Your Happy Place</button>
+          <button class="buttonBegin backgroundBrown center fontFjallaOne submit textShadow textWhite" type="submit">Find Your Happy Place</button>
         </div>
       </form>
       </section>
     </div>
     </div>
     <div class="row sectionOne hidden" id="mapRow">
-      <div class="col-4"><h2 class="sectionTitle brownText centerText fontFjallaOne whiteBackground">Bookstores</h2>
-        <div class="bookstores box brownBorder brownText curvedBorder fontFjallaOne whiteBackground"></div>
+      <div class="col-4"><h2 class="menuBanner">Bookstores</h2>
+        <div class="bookstores box menuResults"></div>
       </div>
-      <div class="col-4"><h2 class="sectionTitle brownText centerText fontFjallaOne whiteBackground">Map</h2>
-        <div id="map" class="box brownBorder curvedBorder hidden whiteBackground"><h2>Something went wrong! Please make a new search.</h2></div>
+      <div class="col-4"><h2 class="menuBanner">Map</h2>
+        <div id="map" class="box menuResults hidden"><h2>Something went wrong! Please make a new search.</h2></div>
       </div>
-      <div class="col-4"><h2 class="sectionTitle brownText centerText fontFjallaOne whiteBackground">Coffee Shops</h2>
-        <div class="coffeeShops box brownBorder brownText curvedBorder fontFjallaOne whiteBackground"></div>
+      <div class="col-4"><h2 class="menuBanner">Coffee Shops</h2>
+        <div class="coffeeShops box menuResults"></div>
       </div>
     </div>
     <div class="row centered hidden">
-      <div class="col-12"><h2 class="sectionTitle brownText centerText fontFjallaOne whiteBackground">A Book for You</h2>
-        <div class="boxTwo brownBorder center centerText curvedBorder fontFjallaOne whiteBackground">
-          <div class="book-results brownText whiteBackground">
+      <div class="col-12"><h2 class="menuBanner">A Book for You</h2>
+        <div class="boxTwo menuResults">
+          <div class="book-results textBrown backgroundWhite textCenter">
             </div>
-            <button class="bookSuggest block brownBackground center fontFjallaOne relative textShadow whiteText" type="submit">I want another book!</button>  
+            <button class="bookSuggest buttonNew center textShadow" type="submit">I want another book!</button>  
           </div>   
       </div>
     </div>
     <div class="resetPage hidden">
-    <button class="resetButton block brownBackground center fontFjallaOne relative textShadow whiteText" type="submit">Start a New Search</button> 
+    <button class="resetButton buttonNew center textShadow" type="submit">Start a New Search</button> 
   </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
