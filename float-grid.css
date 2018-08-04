@@ -59,9 +59,6 @@ main .row {
   font-weight: normal;
   font-size: 37px;
   padding-bottom: 10px;
-  position: relative;
-  display: inline-block;
-  text-align: center;
 }
 
 .places-search {
@@ -168,6 +165,10 @@ label {
   padding-bottom: 30px;
 }
 
+  .hiddenPhone {
+    display: none;  
+  }
+
 @media only screen and (min-width: 640px) {
 
   .coffeeShops, .bookstores, .suggestion {
@@ -222,6 +223,14 @@ label {
   .bookSuggest {
   min-width: 200px;
   width: 40%;
+  }
+
+  .hiddenWideScreen {
+    display: none;  
+  }
+
+  .hiddenPhone {
+    display: block;  
   }
 
   .coffeeShops, .bookstores, .suggestion, .boxTwo {
