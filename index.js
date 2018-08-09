@@ -48,10 +48,18 @@ function getDataFromGeocodeApi(searchTerm, callback, meters) {
 }
 
 // collects the longitude and latitude returned by the Geocode API and sends them to initMap
-function renderGeocodeResult(result, meters) {
-  const coordinates1 = `${result.results[0].geometry.location.lat}`
-  const coordinates2 = `${result.results[0].geometry.location.lng}`
-  initMap(coordinates1, coordinates2, meters);
+function renderGeocodeResult(response, meters) {
+  if (response && response.results && response.results.length) {
+    const result = response.results[0];
+    if (result && result.geometry && result.geometry.location) {
+      const coordinates1 = `${result.geometry.location.lat}`
+      const coordinates2 = `${result.geometry.location.lng}`
+      return initMap(coordinates1, coordinates2, meters);
+    } 
+  }
+  //If past this line, there was an error in the Geocode Result
+  //ERROR MESSAGE
+  console.log("The Geocode Failed!")
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -67,29 +75,33 @@ let infowindow;
 
 // creates the map
 function initMap(num1, num2, meters) {
-  let lat1 = parseFloat(num1);
-  let lng1 = parseFloat(num2);
-  var pyrmont = {lat: lat1, lng: lng1};
-  
-  const zoom = function(meters) {
-  let metersNum = parseInt(meters);
-      if (metersNum === 1000) {
-      return 14;
-    } else if (metersNum === 5000) {
-      return 12;
-    } else {
-      return 11;
+  if (arguments.length === 3) {
+    let lat1 = parseFloat(num1);
+    let lng1 = parseFloat(num2);
+    var pyrmont = {lat: lat1, lng: lng1};
+    
+    const zoom = function(meters) {
+    let metersNum = parseInt(meters);
+        if (metersNum === 1000) {
+        return 14;
+      } else if (metersNum === 5000) {
+        return 12;
+      } else {
+        return 11;
+      }
     }
+
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: pyrmont,
+      zoom: zoom(meters)
+    });
+
+    infowindow = new google.maps.InfoWindow();
+    var service = new google.maps.places.PlacesService(map);
+    findNearbyShops(service, pyrmont, meters) 
+  } else {
+      $(".buttonBegin").prop("disabled", false);
   }
-
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: pyrmont,
-    zoom: zoom(meters)
-  });
-
-  infowindow = new google.maps.InfoWindow();
-  var service = new google.maps.places.PlacesService(map);
-  findNearbyShops(service, pyrmont, meters) 
 }
 
 // locates shops using the processing functions, utilizing the user's information
@@ -109,11 +121,12 @@ function findNearbyShops(service, location, radius) {
 }
 
 function displayTotalResultsNoBook() {
-  $(".resultsSummary").append(`Check out your <a class = "hiddenPhoneText" href="#bookstores">bookstore</a><a class = "hiddenWideScreen" href="#bookstores2">bookstore</a> and <a href="#coffeeshops">coffee shop</a> results! Unfortunately, I could not find a book recommendation based on your input.`)
+  $(".resultsSummary").html(`Check out your <a class = "hiddenPhoneText" href="#bookstores">bookstore</a><a class = "hiddenWideScreen" href="#bookstores2">bookstore</a> and <a href="#coffeeshops">coffee shop</a> results! Unfortunately, I could not find a book recommendation based on your input.`)
 }
 
 function displayTotalResults(suggestion) {
-  $(".resultsSummary").append(`Check out your <a class = "hiddenPhoneText" href="#bookstores">bookstore</a><a class = "hiddenWideScreen" href="#bookstores2">bookstore</a> and <a href="#coffeeshops">coffee shop</a> results! I think you'll like <a href="#suggestion">${suggestion}</a> based on your tastes.`)
+  //Could do this cleaner and leaner! DRY
+  $(".resultsSummary").html(`Check out your <a class = "hiddenPhoneText" href="#bookstores">bookstore</a><a class = "hiddenWideScreen" href="#bookstores2">bookstore</a> and <a href="#coffeeshops">coffee shop</a> results! I think you'll like <a href="#suggestion">${suggestion}</a> based on your tastes.`)
 }
 
 // generates a bookstore marker for each store
@@ -143,9 +156,6 @@ function createCoffeeMarker(place, icon) {
       infowindow.setContent(place.name);
       infowindow.open(map, this);
   });
-
-  // reveals the second page to the user
-  revealMap();
 }
 
 // sorts out bookstores using the filter function, then sends them to be rendered
@@ -176,6 +186,9 @@ function processCoffeeShops(results, status) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     renderCoffeeShops(filteredCoffeeShops);
   }
+
+  // reveals the second page to the user
+  revealMap();
 }
 
 // filters coffee shops through specific requirements
