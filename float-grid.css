@@ -96,7 +96,7 @@ label {
 }
 
 /*Results Page*/
-.coffeeShops, .bookstores, .suggestion {
+.coffeeShops, .bookstores, .suggestion, .resultsSummary {
   font-size: 15px;
 }
 
@@ -169,9 +169,13 @@ label {
     display: none;  
   }
 
+  .hiddenPhoneText {
+    display: none;  
+  }
+
 @media only screen and (min-width: 640px) {
 
-  .coffeeShops, .bookstores, .suggestion {
+  .coffeeShops, .bookstores, .suggestion, .resultsSummary {
     font-size: 17px;
   }
 
@@ -233,7 +237,11 @@ label {
     display: block;  
   }
 
-  .coffeeShops, .bookstores, .suggestion, .boxTwo {
+  .hiddenPhoneText {
+    display: inline-block;  
+  }
+
+  .coffeeShops, .bookstores, .suggestion, .resultsSummary, .boxTwo {
   font-size: 19px;
   }
 
