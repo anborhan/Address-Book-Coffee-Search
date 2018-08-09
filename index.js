@@ -109,7 +109,7 @@ function findNearbyShops(service, location, radius) {
 }
 
 function displayTotalResultsNoBook() {
-  $(".resultsSummary").append(`Check out your bookstore and coffee shop results! Unfortunately, I could not find a book recommendation based on your input.`)
+  $(".resultsSummary").append(`Check out your <a class = "hiddenPhoneText" href="#bookstores">bookstore</a><a class = "hiddenWideScreen" href="#bookstores2">bookstore</a> and <a href="#coffeeshops">coffee shop</a> results! Unfortunately, I could not find a book recommendation based on your input.`)
 }
 
 function displayTotalResults(suggestion) {
