@@ -1,74 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Place searches</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <link href="index.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="./float-grid.css" />
-    <link rel="stylesheet" href="./visuals.css" />
-    <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Average" rel="stylesheet">
-  </head>
-  <body>
-    <main>
+<head>
+  <title>Place searches</title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <link href="index.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="./float-grid.css" />
+  <link rel="stylesheet" href="./visuals.css" />
+  <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Average" rel="stylesheet">
+</head>
+<body>
+  <main>
     <div id="inputPage">
       <div class="selectionMenu backgroundBlue center borderCurved">
-      <section role="region" class="search-bar">
-      <h1 class="header textBrown fontFjallaOne">Address. Book. Coffee.</h1>
-      <form action="#" class="places-search backgroundBlue borderCurved fontAverage">
-        <fieldset class="entryForm fontAverage">
-          <legend class="center fontFjallaOne hidden">Search for Coffee and Bookstores Near You</legend>
-          <label for="address">Address</label>
-          <input type="text" id="address" class="address-query" placeholder="123 Place Street" required value="9208 Jefferson Circle N">
-          <label for="city">City</label>
-          <input type="text" id="city" class="city-query" placeholder="Atlantis" required value="Atlanta">
-          <label for = "meter">Distance</label>
-          <select id = "meter" class="fontAverage backgroundWhite">
-            <option value = "1000">1000 meters</option>
-            <option value = "5000">5000 meters</option>
-            <option selected value = "10000">10,000 meters</option>
-          </select>
-            <label for="favoriteBook">Your Favorite Book or Author</label>
-            <input type="text" id="favoriteBook" class="favorite" placeholder="Moby Dick" required value="Harry Potter">
-        </fieldset>
-        <div class="relative">
-          <button class="buttonBegin backgroundBrown center fontFjallaOne submit textShadow textWhite" type="submit">Find Your Happy Place</button>
-        </div>
-      </form>
-      </section>
-    </div>
+        <section role="region" class="search-bar">
+          <h1 class="header textBrown fontFjallaOne">Address. Book. Coffee.</h1>
+          <form action="#" class="places-search backgroundBlue borderCurved fontAverage">
+            <fieldset class="entryForm fontAverage">
+              <legend class="center fontFjallaOne hidden">Search for Coffee and Bookstores Near You</legend>
+              <label for="address">Address</label>
+              <input type="text" id="address" class="address-query fontAverage" placeholder="123 Place Street" required>
+              <label for="city">City</label>
+              <input type="text" id="city" class="city-query fontAverage" placeholder="Atlantis" required>
+              <label for = "meter">Distance</label>
+              <select id = "meter" class="fontAverage backgroundWhite">
+                <option selected value = "1000">1000 meters</option>
+                <option value = "5000">5000 meters</option>
+                <option value = "10000">10,000 meters</option>
+              </select>
+              <label for="favoriteBook">Your Favorite Book or Author</label>
+              <input type="text" id="favoriteBook" class="favorite fontAverage" placeholder="Moby Dick" required>
+            </fieldset>
+            <div class="relative">
+              <button class="buttonBegin backgroundBrown center fontFjallaOne submit textShadow textWhite" type="submit" disabled>Find Your Happy Place</button>
+            </div>
+          </form>
+        </section>
+      </div>
     </div>
     <div class="row sectionOne hidden" id="mapRow">
       <div class="col-12"><div class = "menuBanner resultsSummary hidden" aria-live="assertive"></div></div>
-      <div class="col-4"><h2 class="menuBanner hiddenPhone"><a name="bookstores">Bookstores</a></h2>
-        <div class="bookstores box menuResults hiddenPhone"></div>
+      <div class="col-4"><h2 class="menuBanner widescreenOnly"><a name="bookstores">Bookstores</a></h2>
+        <div class="bookstores box menuResults widescreenOnly"></div>
+        <ul></ul>
       </div>
       <div class="col-4"><h2 class="menuBanner">Map</h2>
-        <div id="map" class="box menuResults hidden"><h2>Something went wrong! Please make a new search.</h2></div>
+        <div id="map" class="box menuResults hidden"></div>
       </div>
-      <div class="col-4"><h2 class="menuBanner hiddenWideScreen"><a name="bookstores2">Bookstores</a></h2>
-        <div class="bookstores box menuResults hiddenWideScreen"></div>
+      <div class="col-4"><h2 class="menuBanner mobileOnly"><a name="bookstores2">Bookstores</a></h2>
+        <div class="bookstores box menuResults mobileOnly"></div>
       </div>
       <div class="col-4"><h2 class="menuBanner"><a name="coffeeshops">Coffee Shops</a></h2>
         <div class="coffeeShops box menuResults"></div>
+        <ul id="coffeeShops"></ul>
       </div>
     </div>
     <div class="row centered hidden">
       <div class="col-12"><h2 class="menuBanner"><a name="suggestion">A Book for You</a></h2>
-        <div class="boxTwo menuResults">
-          <div class="book-results textBrown backgroundWhite">
-            </div>
-            <button class="bookSuggest buttonNew center textShadow" type="submit">I want another book!</button>  
-          </div>   
+        <div class="boxTwo center menuResults" tabindex="4">
+          <div class="book-results center textBrown backgroundWhite">
+          </div>
+          <button class="bookSuggest buttonNew center textShadow" type="submit">I want another book!</button>  
+        </div>   
       </div>
     </div>
     <div class="resetPage hidden">
-    <button class="resetButton buttonNew center textShadow" type="submit">Start a New Search</button> 
-  </div>
-    </main>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="index.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAo1LDASiD0RRLu_bi_byILuWw7aC5bDKM&libraries=places&callback=initMap" async defer></script>
-  </body>
+      <button class="resetButton buttonNew center textShadow" type="submit">Start a New Search</button> 
+    </div>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="index.js"></script>
+  <script src="geocode.js"></script>
+  <script src="maps.js"></script>
+  <script src="tastedive.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAo1LDASiD0RRLu_bi_byILuWw7aC5bDKM&libraries=places&callback=initMap" async defer></script>
+</body>
 </html>

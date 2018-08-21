@@ -54,14 +54,23 @@ main .row {
 }
 
 .header {
-  width: 100%;
-  top: 10px;
-  font-weight: normal;
-  font-size: 37px;
-  padding-bottom: 10px;
+ width: 100%;
+ top: 10px;
+ font-weight: normal;
+ font-size: 37px;
+ padding-bottom: 10px;
 }
 
-.places-search {
+.favoriteTwo {
+  margin-bottom: 25px;
+  border: solid 2px black;
+  border-radius: 4px;
+  font-size: 19px;
+  width: 95%;
+  height: 30px;
+}
+
+.places-search, .tastediveSecondAttempt {
   position: relative;
 }
 
@@ -71,10 +80,9 @@ main .row {
   border-radius: 4px;
   font-size: 19px;
   width: 95%;
-  height: 30px;
 }
 
-label {
+.entryForm label {
   font-family: 'Fjalla One', sans-serif;
   display: block;
   position: relative;
@@ -100,7 +108,7 @@ label {
   font-size: 15px;
 }
 
-.bookSuggest {
+.bookSuggest, .buttonResubmit {
   min-width: 200px;
   width: 70%;
   height: 90px;
@@ -113,9 +121,9 @@ label {
   padding-right: 10px;
 }
 
-.bookSuggest {
+.bookSuggest, .buttonResubmit {
   min-width: 200px;
-  width: 15%;
+  width: 50%;
   height: 90px;
   border-radius: 4px;
   border: black solid 4px;
@@ -123,11 +131,10 @@ label {
   font-weight: bold;
   margin-top: 20px;
   cursor: pointer;
-  padding-right: 10px;
 }
 
 .resetButton {
-  width: 80%;
+  width: 60%;
   height: 90px;
   border-radius: 4px;
   border: black solid 4px;
@@ -158,20 +165,23 @@ label {
 }
 
 .boxTwo {
-  padding-right: 10px;
   min-height: 300px;
   height: 60%;
   padding-top: 30px;
   padding-bottom: 30px;
 }
 
-  .hiddenPhone {
-    display: none;  
-  }
+.widescreenOnly {
+  display: none;  
+}
 
-  .hiddenPhoneText {
-    display: none;  
-  }
+.hiddenPhoneText {
+  display: none;  
+}
+
+.resultsSummary {
+  padding: 5%;
+}
 
 @media only screen and (min-width: 640px) {
 
@@ -179,6 +189,18 @@ label {
     font-size: 17px;
   }
 
+  .resultsSummary {
+    padding: 2%;
+  }
+
+  .favoriteTwo {
+    margin-bottom: 25px;
+    border: solid 2px black;
+    border-radius: 4px;
+    font-size: 19px;
+    width: 40%;
+    height: 30px;
+  }
 }
 
 /* Non-mobile, grid */
@@ -210,7 +232,13 @@ label {
 
   .box {
     min-height: 800px;
-    height: 60%;  
+    max-height: 800px;  
+    overflow-y: scroll;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
   }
 
 
@@ -224,29 +252,29 @@ label {
     padding-right: 1.04166666%;
   }
 
-  .bookSuggest {
-  min-width: 200px;
-  width: 40%;
+  .bookSuggest, .buttonResubmit {
+    min-width: 200px;
+    width: 40%;
   }
 
-  .hiddenWideScreen {
+  .mobileOnly {
     display: none;  
   }
 
-  .hiddenPhone {
+  .widescreenOnly {
     display: block;  
   }
 
-  .hiddenPhoneText {
+  a.widescreenOnly, span.widescreenOnly {
     display: inline-block;  
   }
 
   .coffeeShops, .bookstores, .suggestion, .resultsSummary, .boxTwo {
-  font-size: 19px;
+    font-size: 19px;
   }
 
-  .coffeeShops, .bookstores, .boxTwo {
-  padding-left: 10px;
-}
+  .coffeeShops, .bookstores {
+    padding-left: 10px;
+  }
 
 }
