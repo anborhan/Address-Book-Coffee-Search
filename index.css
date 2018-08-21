@@ -1,6 +1,6 @@
 /*Entire Page*/
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -32,7 +32,7 @@ body {
 }
 
 legend {
-  position: relative  
+  position: relative; 
 }
 
 select {
@@ -44,6 +44,12 @@ select {
   display: block;
 }
 
+.failureMessage {
+  margin-bottom: 10px;
+  border: solid 2px red;
+  padding: 10px;
+}
+
 /*Results Page*/
 .menuBanner {
   color: #302220;
@@ -51,6 +57,7 @@ select {
   font-family: 'Fjalla One', sans-serif;
   background-color: #FCFCFC;
   border: #302220 solid 4px;
+  padding: 10px;
 }
 
 .menuResults {
@@ -61,14 +68,30 @@ select {
   background-color: #FCFCFC;
 }
 
-.book-results {
-  text-align: center;
+.listLocations {
+  list-style-type: none;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 10px;
 }
 
-.buttonNew {
+.book-results {
+  text-align: center;
+  width: 90%;
+}
+
+.buttonNew, .tasteDiveReEntry {
   display: block;
   position: relative;
   font-family: 'Fjalla One', sans-serif;
   color: #FCFCFC;
   background-color: #302220;
+}
+
+label>address::before {
+  content: " - ";
+}
+
+.rating {
+  font-style: italic;
 }
