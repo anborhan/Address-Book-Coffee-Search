@@ -4,7 +4,7 @@ A location-finding, book recommending application which allows users to input th
 
 ## Live Link
 
-[https://anborhan.github.io/CAPSTONE-PROJECT/](https://anborhan.github.io/CAPSTONE-PROJECT/)
+[https://anborhan.github.io/Address-Book-Coffee-Search/](https://anborhan.github.io/Address-Book-Coffee-Search/)
 
 ## Screenshots
 
