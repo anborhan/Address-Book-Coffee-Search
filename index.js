@@ -8,6 +8,7 @@ let QUERY_TASTE;
 function watchAddressSubmit() {
   $(".places-search").submit(event => {
     event.preventDefault();
+    mapRemoveTabIndex();
 
     // retrieves the address, city, and distance information and runs it through Geocode API
     const meters = $("#meter").val();
@@ -72,7 +73,6 @@ $(function(){
   watchAddressSubmit();
   resetForms();
   resetSearch();
-  mapRemoveTabIndex();
 })
 
 ///////////////////////////
