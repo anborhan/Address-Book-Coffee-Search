@@ -47,7 +47,6 @@ function initMap(num1, num2, meters) {
       return getDataFromTasteDiveApi(QUERY_TASTE, displayBookRecommendation)
       .then(function(data){
         const book = ( data && data.Similar && data.Similar.Results && data.Similar.Results.length && data.Similar.Results[0].Name ) || "";
-        console.log('book:', book);
         return {
           coffeeShops: results.coffeeShops,
           bookstores: results.bookstores,
