@@ -2,7 +2,6 @@ let COUNTER_TASTEDIVE = 0;
 
 // retrieves data from Taste Dive with user's input
 function getDataFromTasteDiveApi(searchTerm, callback) {
-  console.log("getdata")
   const settings = {
     url: BOOK_ENTRY_URL,
     data: {
@@ -32,7 +31,6 @@ function renderInitialResult(results) {
   const result = results[0]
   // provides a result if the user enters something that isn't a book or author, or if the API doesn't have that particular book in the system
   if (!results) {
-    console.log("Hi")
     $(".bookSuggest").addClass("hidden");
     $('.book-results').html("");
     $(".book-results").append("Your entry wasn\'t found! Please make a new search and try again.");
@@ -68,7 +66,6 @@ function newTasteSearch() {
     $(".buttonResubmit").addClass("hidden");
     const queryTasteTwo = $(event.currentTarget).find(".favoriteTwo");
     queryNew = queryTasteTwo.val();
-    console.log(queryNew)
     getDataFromTasteDiveApi(queryNew, displayBookRecommendation)
     $(".bookSuggest").removeClass("hidden");
   });
@@ -76,7 +73,6 @@ function newTasteSearch() {
 
 //allows user to see another book result by scrolling through a set number (20) of results from the Taste Dive API
 function tryAnotherBook(result) {
-  console.log(result)
   let counter = 0;
   let suggestionLength = result.length - 2;
   $(".bookSuggest").on("click", function(){
