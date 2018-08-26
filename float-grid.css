@@ -241,6 +241,7 @@ main .row {
     background: transparent; /* make scrollbar transparent */
   }
 
+
   .boxTwo {
     min-height: 300px;
     height: 60%;  
