@@ -17,8 +17,9 @@ function initMap(num1, num2, meters) {
     var pyrmont = {lat: lat1, lng: lng1};
     
     const zoom = function(meters) {
-    let metersNum = parseInt(meters);
-        if (metersNum === 1000) {
+      let metersNum = parseInt(meters);
+      console.log(metersNum)
+      if (metersNum === 1000) {
         return 14;
       } else if (metersNum === 5000) {
         return 12;
@@ -36,9 +37,9 @@ function initMap(num1, num2, meters) {
 
     // Set tabindex on all <a> elements once map has loaded
     listener = map.addListener('tilesloaded', function(){
-    $map.find('a').attr('tabindex', -1)
-    google.maps.event.removeListener(listener)
-  });
+      $map.find('a').attr('tabindex', -1)
+      google.maps.event.removeListener(listener)
+    });
 
     infowindow = new google.maps.InfoWindow();
     var service = new google.maps.places.PlacesService(map);
@@ -57,7 +58,7 @@ function initMap(num1, num2, meters) {
     }) 
     .then(displayTotalResults)
   } else {
-      $(".buttonBegin").prop("disabled", false);
+    $(".buttonBegin").prop("disabled", false);
   }
 }
 
@@ -114,20 +115,21 @@ function findNearbyShops(service, location, radius) {
   return findCoffeeShops(service, location, radius)
   // find and filter coffee shops
   .then( function(_coffeeShops){
-
+    updateCoffeeShopProgress("Coffee Shops Found...");
     coffeeShops = _coffeeShops.filter(filterCoffeeshop);
     renderCoffeeShops(coffeeShops);
 
     // find and filter bookstores
     return findBookStores(service, location, radius)
     .then( function (bookstores){
-      return  bookstores.filter(filterBookstore);
+      updateBookstoreProgress("Bookstores Found...");
+      return bookstores.filter(filterBookstore);
     })
     .catch(function(err){
       // catch a book store error
       console.log("Something went wrong with findBookStores!", err)
     })
-  
+    
   })
   .catch(function(err){
     // catch a book store or coffee shop error
@@ -151,7 +153,7 @@ function displayTotalResults(results) {
     $(".resultsSummary").html(`I found <a class = "widescreenOnly" href="#bookstores">${results.bookstores.length} bookstores</a><a class = "mobileOnly" href="#bookstores2">${results.bookstores.length} bookstores</a> and <a href="#coffeeshops">${results.coffeeShops.length} coffee shops</a> in your area! I think you'll like <a href="#suggestion">${results.book}</a> based on your tastes.`)
   } else {
    $(".resultsSummary").html(`I found <a class = "widescreenOnly" href="#bookstores">${results.bookstores.length} bookstores</a><a class = "mobileOnly" href="#bookstores2">${results.bookstores.length} bookstores</a> and <a href="#coffeeshops">${results.coffeeShops.length} coffee shops</a> in your area! Unfortunately, I couldn't find a <a href="#suggestion">suggestion</a> for a book based on your information.`)
-  }
+ }
 }
 
 // generates a bookstore marker for each store
@@ -163,8 +165,8 @@ function createBookstoreMarker(place, icon) {
   });
   
   google.maps.event.addListener(marker, 'click', function() {
-      infowindow.setContent(place.name);
-      infowindow.open(map, this);
+    infowindow.setContent(place.name);
+    infowindow.open(map, this);
   });
 }
 
@@ -178,8 +180,8 @@ function createCoffeeMarker(place, icon) {
   }); 
 
   google.maps.event.addListener(marker, 'click', function() {
-      infowindow.setContent(place.name);
-      infowindow.open(map, this);
+    infowindow.setContent(place.name);
+    infowindow.open(map, this);
   });
 }
 
@@ -198,10 +200,10 @@ function filterBookstore(place) {
 
 // calls for markers to be placed and bookstores to be listed
 function renderBookstores(results, status) {
-  for (let i = 0; i < results.length; i++) {
+  if (results) for (let i = 0; i < results.length; i++) {
     let place = results[i];
-      createBookstoreMarker(place, ICON_BOOKSTORE);
-      listBookstore(place, i);
+    createBookstoreMarker(place, ICON_BOOKSTORE);
+    listBookstore(place, i);
   }  
 }
 
@@ -223,10 +225,10 @@ function filterCoffeeshop(place) {
 
 // calls for markers to be placed and coffee shops to be listed
 function renderCoffeeShops(results, status) {
-  for (let i = 0; i < results.length; i++) {
+  if (results) for (let i = 0; i < results.length; i++) {
     let place = results[i];
-        createCoffeeMarker(place, ICON_COFFEE_MUG);
-        listCoffeeShop(place, i);
+    createCoffeeMarker(place, ICON_COFFEE_MUG);
+    listCoffeeShop(place, i);
   }
 }
 
@@ -243,4 +245,16 @@ function listCoffeeShop(place, index) {
   //const coffeeShopBaseIndex = 4;
   //let counter = coffeeShopBaseIndex + index;
   $(".coffeeShops").append(`<li class="listLocations"><label><a href="https://www.google.com/maps/search/?api=1&query=${place.name}&query_place_id=${place.id}" target="_blank">${place.name}</a> <address>${place.vicinity}</address></label> <span class="rating">- Rating: ${place.rating}</span></li>`);
+}
+
+//Changes Progress Bar on Geocode Success
+function updateCoffeeShopProgress(message, percentage) {
+  $(".progressBar>span").addClass(`fill${typeof percentage == "number"?percentage:50}`);
+  if(message) $(".progressBar>label").text(message);
+}
+
+//Changes Progress Bar on Geocode Success
+function updateBookstoreProgress(message, percentage) {
+  $(".progressBar>span").addClass(`fill${typeof percentage == "number"?percentage:75}`);
+  if(message) $(".progressBar>label").text(message);
 }

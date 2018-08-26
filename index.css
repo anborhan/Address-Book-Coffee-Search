@@ -17,6 +17,7 @@ body {
   position: relative;
   display: inline-block;
   text-align: center;
+  margin: 30.71px 0 0 0;
 }
 
 .selectionMenu {
@@ -24,6 +25,12 @@ body {
   margin-top: 5em;
   border: black solid 4px;
   position: relative;
+}
+
+.description {
+  text-align: center;
+  padding: 0 10px;
+
 }
 
 .entryForm {
@@ -39,9 +46,56 @@ select {
   position: relative;
 }
 
-.buttonBegin {
+.buttonBegin, .progressBar {
   position: absolute;
   display: block;
+}
+
+.progressBar {
+  text-align: center;
+  height: 75px;
+  visibility: hidden;
+}
+
+.progressBar > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.progressBar > label {
+  right: 0;
+  top: 14px;
+}
+
+.searching .buttonBegin {
+  visibility: hidden;
+}
+
+.searching .progressBar {
+  visibility: visible;
+}
+
+/*Progress Bar Filling*/
+.fill0 {
+  width: 0;
+}
+
+.fill25 {
+  width: 25%;
+}
+
+.fill50 {
+  width: 50%;
+}
+
+.fill75 {
+  width: 75%;
+}
+
+.fill100 {
+  width: 100%;
 }
 
 .failureMessage {

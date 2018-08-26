@@ -2,12 +2,15 @@
 
 const PLACES_SEARCH_URL = "https://maps.googleapis.com/maps/api/geocode/json";
 const BOOK_ENTRY_URL = "https://tastedive.com/api/similar?";
+const PLACES_API_KEY = "AIzaSyClAGAlVzkT-vNFM8rXYuEe3Iu-SHFS9eE"
 let QUERY_TASTE;
 
 // accepts data from the user-submitted form and runs the appropriate functions
 function watchAddressSubmit() {
   $(".places-search").submit(event => {
     event.preventDefault();
+    mapRemoveTabIndex();
+    $(event.currentTarget).addClass("searching");
 
     // retrieves the address, city, and distance information and runs it through Geocode API
     const meters = $("#meter").val();
@@ -60,6 +63,9 @@ function resetSearch() {
     $(".coffeeStoreResults").addClass("hidden");
     $(".resetPage").addClass("hidden");
     $(".places-search")[0].reset();
+    $(".progressBar>span").removeClass("fill25 fill50 fill75 fill100")
+    $(".places-search").removeClass("searching")
+    $(".progressBar>label").text("Searching...")
   });
 }
 
@@ -72,7 +78,6 @@ $(function(){
   watchAddressSubmit();
   resetForms();
   resetSearch();
-  mapRemoveTabIndex();
 })
 
 ///////////////////////////
