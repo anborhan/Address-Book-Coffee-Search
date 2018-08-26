@@ -18,7 +18,6 @@ function initMap(num1, num2, meters) {
     
     const zoom = function(meters) {
       let metersNum = parseInt(meters);
-      console.log(metersNum)
       if (metersNum === 1000) {
         return 14;
       } else if (metersNum === 5000) {
@@ -48,7 +47,6 @@ function initMap(num1, num2, meters) {
       return getDataFromTasteDiveApi(QUERY_TASTE, displayBookRecommendation)
       .then(function(data){
         const book = ( data && data.Similar && data.Similar.Results && data.Similar.Results.length && data.Similar.Results[0].Name ) || "";
-        console.log('book:', book);
         return {
           coffeeShops: results.coffeeShops,
           bookstores: results.bookstores,
@@ -127,7 +125,7 @@ function findNearbyShops(service, location, radius) {
     })
     .catch(function(err){
       // catch a book store error
-      console.log("Something went wrong with findBookStores!", err)
+      console.log("Something went wrong with findBookStores! (Or shops were not found in this area)", err)
     })
     
   })
