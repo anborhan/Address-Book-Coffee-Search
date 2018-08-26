@@ -21,6 +21,7 @@ function getDataFromTasteDiveApi(searchTerm, callback) {
       } else {
         renderNewEntryForm();
       }
+      updateTastediveProgress("All Done!")
     } ,
   };
 
@@ -96,4 +97,10 @@ function tryAnotherBook(result) {
 function displayBookRecommendation(data) {
   const results = data.results.map((item, index) => renderInitialResult(item));
   $(`.book-results`).html(results);
+}
+
+//Changes Progress Bar on Geocode Success
+function updateTastediveProgress(message, percentage) {
+  $(".progressBar>span").addClass(`fill${typeof percentage == "number"?percentage:100}`);
+  if(message) $(".progressBar>label").text(message);
 }

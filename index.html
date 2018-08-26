@@ -16,6 +16,7 @@
       <div class="selectionMenu backgroundBlue center borderCurved">
         <section role="region" class="search-bar">
           <h1 class="header textBrown fontFjallaOne">Address. Book. Coffee.</h1>
+          <p class="description textBrown fontFjallaOne" aria-live="polite">Love coffee? Love reading? Get listings of bookstores and coffee shops in your area, plus a book recommendation!</p>
           <form action="#" class="places-search backgroundBlue borderCurved fontAverage">
             <fieldset class="entryForm fontAverage">
               <legend class="center fontFjallaOne hidden">Search for Coffee and Bookstores Near You</legend>
@@ -34,6 +35,10 @@
             </fieldset>
             <div class="relative">
               <button class="buttonBegin backgroundBrown center fontFjallaOne submit textShadow textWhite" type="submit" disabled>Find Your Happy Place</button>
+              <div class="progressBar backgroundBrown center fontFjallaOne textShadow textWhite">
+                <span class="backgroundBlue fill0"></span>
+                <label>Searching...</label>
+              </div>
             </div>
           </form>
         </section>
@@ -66,7 +71,7 @@
       </div>
     </div>
     <div class="resetPage hidden">
-      <button class="resetButton buttonNew center textShadow" type="submit">Start a New Search</button> 
+      <button class="resetButton buttonNew center textShadow" type="submit">Start a New Search</button>
     </div>
   </main>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -74,6 +79,6 @@
   <script src="geocode.js"></script>
   <script src="maps.js"></script>
   <script src="tastedive.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAo1LDASiD0RRLu_bi_byILuWw7aC5bDKM&libraries=places&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClAGAlVzkT-vNFM8rXYuEe3Iu-SHFS9eE&libraries=places&callback=initMap" async defer></script>
 </body>
 </html>
