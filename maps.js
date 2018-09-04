@@ -34,12 +34,6 @@ function initMap(num1, num2, meters) {
       zoom: zoom(meters),
     });
 
-    // Set tabindex on all <a> elements once map has loaded
-    listener = map.addListener('tilesloaded', function(){
-      $map.find('a').attr('tabindex', -1)
-      google.maps.event.removeListener(listener)
-    });
-
     infowindow = new google.maps.InfoWindow();
     var service = new google.maps.places.PlacesService(map);
     return findNearbyShops(service, pyrmont, meters) 
