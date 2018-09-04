@@ -7,8 +7,6 @@ function getDataFromGeocodeApi(searchTerm, callback, meters) {
       key: PLACES_API_KEY,
       address: `${searchTerm}`,
     },
-    json: "callback",
-    dataType: 'json',
     type: 'GET',
     success: function(data) {
       renderGeocodeResult(data, meters);
