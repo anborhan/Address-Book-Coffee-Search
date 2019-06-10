@@ -1,6 +1,6 @@
 # "Address. Book. Coffee."
 
-A location-finding, book recommending application which allows users to input their address and favorite book, providing them with a user-friendly list of coffee shops and bookstores in the area, a live map, as well as a recommendation for a book they might enjoy based on their tastes.
+An application for book lovers and coffee aficionados that allows users to input their address and favorite book, providing them with a user-friendly list of coffee shops and bookstores in the area, a live map, as well as a recommendation for a book they might enjoy based on their tastes.
 
 ## Live Link
 
