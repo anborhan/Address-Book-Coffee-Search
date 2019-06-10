@@ -46,12 +46,6 @@ main .row {
 }
 
 /*Front Page with Entry Form*/
-.selectionMenu {
-  max-width: 400px;
-  margin-top: 5em;
-  border: black solid 4px;
-  position: relative;
-}
 
 .header {
  width: 100%;
