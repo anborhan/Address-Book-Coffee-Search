@@ -1,0 +1,279 @@
+.col-3, .col-4, .col-6, .col-12 {
+  float: left;
+  padding-left: 1.04166666%;
+  padding-right: 1.04166666%;
+}
+
+/* Mobile defaults */
+.col-3, .col-4, .col-6, .col-12 {
+  width: 100%;
+  height: 100%;
+}
+
+#map {
+  width: 100%;
+  left: 0px;
+  height: 300px;
+}
+
+/* Clearfix */
+.row::before,
+.row::after {
+  display: table;
+  content: '';
+}
+
+.row::after {
+  clear: both;
+}
+
+#mapRow::before,
+#mapRow::after {
+  display: table;
+  content: '';
+}
+
+#mapRow::after {
+  clear: both;
+}
+
+main {
+  padding-top: 30px;
+}
+
+main .row {
+  margin-bottom: 20px;
+}
+
+/*Front Page with Entry Form*/
+.selectionMenu {
+  max-width: 400px;
+  border: black solid 4px;
+  position: relative;
+}
+
+.header {
+ width: 100%;
+ top: 10px;
+ font-weight: normal;
+ font-size: 37px;
+ padding-bottom: 10px;
+}
+
+.favoriteTwo {
+  margin-bottom: 25px;
+  border: solid 2px black;
+  border-radius: 4px;
+  font-size: 19px;
+  width: 95%;
+  height: 30px;
+}
+
+.places-search, .tastediveSecondAttempt {
+  position: relative;
+}
+
+.places-search input, #meter{
+  margin-bottom: 25px;
+  border: solid 2px #E7E7E7;
+  border-radius: 4px;
+  font-size: 19px;
+  width: 95%;
+}
+
+.entryForm label {
+  font-family: 'Fjalla One', sans-serif;
+  display: block;
+  position: relative;
+  font-size: 19px;
+  text-align: center;
+  margin-bottom: 2px;
+  margin-top: 2px;
+}
+
+.submit, .progressBar {
+  width: 100%;
+  padding: 0.5em;
+  border-radius: 4px;
+  border: black solid 4px;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+/*Results Page*/
+.coffeeShops, .bookstores, .suggestion, .resultsSummary {
+  font-size: 15px;
+}
+
+.bookSuggest, .buttonResubmit {
+  min-width: 200px;
+  width: 70%;
+  height: 90px;
+  border-radius: 4px;
+  border: black solid 4px;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+  padding-right: 10px;
+}
+
+.bookSuggest, .buttonResubmit {
+  min-width: 200px;
+  width: 50%;
+  height: 90px;
+  border-radius: 4px;
+  border: black solid 4px;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.resetButton {
+  width: 60%;
+  height: 90px;
+  border-radius: 4px;
+  border: black solid 4px;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+  padding-right: 10px;
+}
+
+.row {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
+}
+
+#mapRow {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto; 
+}
+
+.box {
+  min-height: 300px;
+  height: 60%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.boxTwo {
+  min-height: 300px;
+  height: 60%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.widescreenOnly {
+  display: none;  
+}
+
+.hiddenPhoneText {
+  display: none;  
+}
+
+.resultsSummary {
+  padding: 5%;
+}
+
+@media only screen and (min-width: 640px) {
+
+  .coffeeShops, .bookstores, .suggestion, .resultsSummary {
+    font-size: 17px;
+  }
+
+  .resultsSummary {
+    padding: 2%;
+  }
+
+  .favoriteTwo {
+    margin-bottom: 25px;
+    border: solid 2px black;
+    border-radius: 4px;
+    font-size: 19px;
+    width: 40%;
+    height: 30px;
+  }
+}
+
+/* Non-mobile, grid */
+@media only screen and (min-width: 1000px) {
+
+  /* 3 columns, 3/12 in % */
+  .col-3 {
+    width: 25%;
+  }
+
+  /* 4 columns, 4/12 in % */
+  .col-4 {
+    width: 33.33%;
+  }
+
+  /* 6 columns 6/12 in % */
+  .col-6 {
+    width: 50%;
+  }
+
+  /* 12 columns, 12/12 */
+  .col-12 {
+    width: 100%;
+  }
+
+  .centered {
+    padding-top: 50px;
+  }
+
+  .box {
+    min-height: 800px;
+    max-height: 800px;  
+    overflow-y: scroll;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+  }
+
+
+  .boxTwo {
+    min-height: 300px;
+    height: 60%;  
+  }
+
+  #map {
+    padding-left: 1.04166666%;
+    padding-right: 1.04166666%;
+  }
+
+  .bookSuggest, .buttonResubmit {
+    min-width: 200px;
+    width: 40%;
+  }
+
+  .mobileOnly {
+    display: none;  
+  }
+
+  .widescreenOnly {
+    display: block;  
+  }
+
+  a.widescreenOnly, span.widescreenOnly {
+    display: inline-block;  
+  }
+
+  .coffeeShops, .bookstores, .suggestion, .resultsSummary, .boxTwo {
+    font-size: 19px;
+  }
+
+  .coffeeShops, .bookstores {
+    padding-left: 10px;
+  }
+
+}
