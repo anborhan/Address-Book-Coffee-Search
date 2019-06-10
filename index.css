@@ -22,7 +22,6 @@ body {
 
 .selectionMenu {
   max-width: 400px;
-  margin-top: 5em;
   border: black solid 4px;
   position: relative;
 }
