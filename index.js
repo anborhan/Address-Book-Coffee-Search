@@ -38,14 +38,7 @@ function revealMap() {
     'background-position-y': "-1920px"}, "slow"
     );
   $(".selectionMenu").slideUp();
-  $("#map").removeClass("hidden");
-  $(".sectionOne").removeClass("hidden");
-  $(".centered").removeClass("hidden");
-  $(".bookSuggest").removeClass("hidden");
-  $(".coffeeStoreResults").removeClass("hidden");
-  $(".resetPage").removeClass("hidden");
-  $(".tasteEntry").removeClass("hidden");
-  $(".resultsSummary").removeClass("hidden");
+  $("#map, .sectionOne, .centered, .bookSuggest, .coffeeStoreResults, .resetPage, .tasteEntry, .resultsSummary").removeClass("hidden");
   $(".failureMessage").remove();
 }
 
@@ -57,11 +50,7 @@ function resetSearch() {
       );
     $(".selectionMenu").slideDown();
     $("#map").addClass("hidden");
-    $(".sectionOne").addClass("hidden");
-    $(".centered").addClass("hidden");
-    $(".bookSuggest").addClass("hidden");
-    $(".coffeeStoreResults").addClass("hidden");
-    $(".resetPage").addClass("hidden");
+    $(".sectionOne, .centered, .bookSuggest, .coffeeStoreResults, .resetPage").addClass("hidden");
     $(".places-search")[0].reset();
     $(".progressBar>span").removeClass("fill25 fill50 fill75 fill100")
     $(".places-search").removeClass("searching")
