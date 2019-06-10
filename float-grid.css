@@ -55,6 +55,13 @@ main .row {
  padding-bottom: 10px;
 }
 
+
+.selectionMenu {
+  max-width: 400px;
+  border: black solid 4px;
+  position: relative;
+}
+
 .favoriteTwo {
   margin-bottom: 25px;
   border: solid 2px black;
